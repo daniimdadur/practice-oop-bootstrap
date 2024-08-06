@@ -4,9 +4,7 @@ import org.security.project.detail.siswa.model.SchoolClassModel;
 import org.security.project.detail.siswa.model.SchoolHistoryModel;
 import org.security.project.detail.siswa.model.StudentModel;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
@@ -137,12 +135,12 @@ public class StudentController {
         schoolHistoryJahfal.add(
                 new SchoolHistoryModel(1, "SDN 1 Bandung", "Bandung", "West Java",
                         Arrays.asList(
-                            new SchoolClassModel(1, "Class 01", LocalDate.of(2013, 1, 1), LocalDate.of(2014, 12, 31), "Tahrir"),
-                            new SchoolClassModel(2, "Class 02", LocalDate.of(2014, 1, 1), LocalDate.of(2015, 12, 31), "Wanto"),
-                            new SchoolClassModel(3, "Class 03", LocalDate.of(2015, 1, 1), LocalDate.of(2016, 12, 31), "Sandi"),
-                            new SchoolClassModel(4, "Class 04", LocalDate.of(2016, 1, 1), LocalDate.of(2017, 12, 31), "Haikal"),
-                            new SchoolClassModel(5, "Class 05", LocalDate.of(2017, 1, 1), LocalDate.of(2018, 12, 31), "Danis"),
-                            new SchoolClassModel(6, "Class 06", LocalDate.of(2018, 1, 1), LocalDate.of(2019, 12, 31), "Cecep")
+                                new SchoolClassModel(1, "Class 01", LocalDate.of(2013, 1, 1), LocalDate.of(2014, 12, 31), "Tahrir"),
+                                new SchoolClassModel(2, "Class 02", LocalDate.of(2014, 1, 1), LocalDate.of(2015, 12, 31), "Wanto"),
+                                new SchoolClassModel(3, "Class 03", LocalDate.of(2015, 1, 1), LocalDate.of(2016, 12, 31), "Sandi"),
+                                new SchoolClassModel(4, "Class 04", LocalDate.of(2016, 1, 1), LocalDate.of(2017, 12, 31), "Haikal"),
+                                new SchoolClassModel(5, "Class 05", LocalDate.of(2017, 1, 1), LocalDate.of(2018, 12, 31), "Danis"),
+                                new SchoolClassModel(6, "Class 06", LocalDate.of(2018, 1, 1), LocalDate.of(2019, 12, 31), "Cecep")
                         )
                 )
         );
@@ -187,9 +185,9 @@ public class StudentController {
         schoolHistoryNaufal.add(
                 new SchoolHistoryModel(2, "MTsN 7 Ciamis", "Sukahurip", "West Java",
                         Arrays.asList(
-                            new SchoolClassModel(7, "Class 07", LocalDate.of(2019, 1, 1), LocalDate.of(2020, 12, 31), "Sali"),
-                            new SchoolClassModel(8, "Class 08", LocalDate.of(2020, 1, 1), LocalDate.of(2021, 12, 31), "Aso"),
-                            new SchoolClassModel(7, "Class 09", LocalDate.of(2021, 1, 1), LocalDate.of(2022, 12, 31), "Siska")
+                                new SchoolClassModel(7, "Class 07", LocalDate.of(2019, 1, 1), LocalDate.of(2020, 12, 31), "Sali"),
+                                new SchoolClassModel(8, "Class 08", LocalDate.of(2020, 1, 1), LocalDate.of(2021, 12, 31), "Aso"),
+                                new SchoolClassModel(7, "Class 09", LocalDate.of(2021, 1, 1), LocalDate.of(2022, 12, 31), "Siska")
                         )
                 )
         );
@@ -421,5 +419,55 @@ public class StudentController {
             return new ModelAndView("redirect:/student");
         }
         return view;
+    }
+
+    @GetMapping("/add")
+    public ModelAndView add() {
+        ModelAndView view = new ModelAndView("student/add");
+        StudentModel student = new StudentModel();
+
+        List<SchoolHistoryModel> schoolHistoryModel = new ArrayList<>();
+
+        //sd
+        ArrayList<SchoolClassModel> sdClass = new ArrayList<>();
+        sdClass.add(new SchoolClassModel(0, "Class 01", null, null, ""));
+        sdClass.add(new SchoolClassModel(0, "Class 02", null, null, ""));
+        sdClass.add(new SchoolClassModel(0, "Class 03", null, null, ""));
+        sdClass.add(new SchoolClassModel(0, "Class 04", null, null, ""));
+        sdClass.add(new SchoolClassModel(0, "Class 05", null, null, ""));
+        sdClass.add(new SchoolClassModel(0, "Class 06", null, null, ""));
+
+        SchoolHistoryModel sdHistory = new SchoolHistoryModel(0, "SD", "", "", sdClass);
+        schoolHistoryModel.add(sdHistory);
+
+        //smp
+        ArrayList<SchoolClassModel> smpClass = new ArrayList<>();
+        smpClass.add(new SchoolClassModel(0, "Class 07", null, null, ""));
+        smpClass.add(new SchoolClassModel(0, "Class 08", null, null, ""));
+        smpClass.add(new SchoolClassModel(0, "Class 09", null, null, ""));
+
+        SchoolHistoryModel smpHistory = new SchoolHistoryModel(0, "SMP", "", "", smpClass);
+        schoolHistoryModel.add(smpHistory);
+
+        //sma
+        ArrayList<SchoolClassModel> smaClass = new ArrayList<>();
+        smaClass.add(new SchoolClassModel(0, "Class 10", null, null, ""));
+        smaClass.add(new SchoolClassModel(0, "Class 11", null, null, ""));
+        smaClass.add(new SchoolClassModel(0, "Class 12", null, null, ""));
+
+        SchoolHistoryModel smaHistory = new SchoolHistoryModel(0, "SMA", "", "", smaClass);
+        schoolHistoryModel.add(smaHistory);
+
+        //add to student
+        student.setSchoolHistory(schoolHistoryModel);
+
+        view.addObject("student", student);
+        return view;
+    }
+
+    @PostMapping("/save")
+    public ModelAndView save(@ModelAttribute("student") StudentModel student) {
+        this.studentList.add(student);
+        return new ModelAndView("redirect:/student");
     }
 }
