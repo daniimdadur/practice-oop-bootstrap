@@ -1,0 +1,26 @@
+package org.security.project.detail.siswa.kelurahan.model;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class KelurahanModel {
+    private Integer id;
+    private String name;
+    private String Kec;
+    @JsonManagedReference
+    private List<DusunModel> dusunModels = new ArrayList<>();
+
+    public KelurahanModel(Integer id, String name, String kec) {
+        this.id = id;
+        this.name = name;
+        Kec = kec;
+    }
+}

@@ -1,8 +1,8 @@
-package org.security.project.detail.siswa.controller;
+package org.security.project.detail.siswa.student.controller;
 
-import org.security.project.detail.siswa.model.SchoolClassModel;
-import org.security.project.detail.siswa.model.SchoolHistoryModel;
-import org.security.project.detail.siswa.model.StudentModel;
+import org.security.project.detail.siswa.student.model.SchoolClassModel;
+import org.security.project.detail.siswa.student.model.SchoolHistoryModel;
+import org.security.project.detail.siswa.student.model.StudentModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;

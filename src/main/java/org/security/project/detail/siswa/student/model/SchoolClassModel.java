@@ -1,4 +1,4 @@
-package org.security.project.detail.siswa.model;
+package org.security.project.detail.siswa.student.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
