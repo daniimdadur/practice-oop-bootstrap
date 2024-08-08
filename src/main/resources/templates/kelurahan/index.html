@@ -22,14 +22,16 @@
     <table class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th>Id</th>
+            <th>No</th>
+            <th>#</th>
             <th>Desa</th>
             <th>Kecamatan</th>
             <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="item : ${kelurahan}">
+        <tr th:each="item, stat : ${data}">
+            <td th:text="${stat.index + 1}"></td>
             <td th:text="${item.id}"></td>
             <td th:text="${item.name}"></td>
             <td th:text="${item.kec}"></td>

@@ -14,13 +14,12 @@ import java.util.List;
 public class KelurahanModel {
     private Integer id;
     private String name;
-    private String Kec;
-    @JsonManagedReference
+    private String kec;
     private List<DusunModel> dusunModels = new ArrayList<>();
 
     public KelurahanModel(Integer id, String name, String kec) {
         this.id = id;
         this.name = name;
-        Kec = kec;
+        this.kec = kec;
     }
 }

@@ -19,340 +19,84 @@ public class KelurahanController {
 
     public KelurahanController() {
 
-        List<DusunModel> dusunModels = new ArrayList<>();
-        //dusun satu
-        dusunModels.add(
-                new DusunModel(1, "Ciparakan", "Nurdin",
-                        Arrays.asList(
-                                new RWModel(1, "RW 01", "Bpk Tori",
-                                        Arrays.asList(
-                                                new RTModel(1, "RT 01", "Bpk Mukhlas",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Naufal", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Adit", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Mujay", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(2, "RT 02", "Bpk Sujai",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Naufal", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Adit", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Mujay", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(3, "RT 03", "Bpk Samsul",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Naufal", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Adit", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Mujay", "Perempuan", "22")
-                                                        )
-                                                )
-                                        )
-                                ),
-                                new RWModel(2, "RW 02", "Bpk Fahmi",
-                                        Arrays.asList(
-                                                new RTModel(1, "RT 01", "Bpk Mukhlas",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Naufal", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Adit", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Mujay", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(2, "RT 02", "Bpk Sujai",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Naufal", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Adit", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Mujay", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(3, "RT 03", "Bpk Samsul",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Naufal", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Adit", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Mujay", "Perempuan", "22")
-                                                        )
-                                                )
-                                        )
-                                ),
-                                new RWModel(3, "RW 03", "Bpk Amud",
-                                        Arrays.asList(
-                                                new RTModel(1, "RT 01", "Bpk Mukhlas",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Naufal", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Adit", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Mujay", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(2, "RT 02", "Bpk Sujai",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Naufal", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Adit", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Mujay", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(3, "RT 03", "Bpk Samsul",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Naufal", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Adit", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Mujay", "Perempuan", "22")
-                                                        )
-                                                )
-                                        )
-                                ),
-                                new RWModel(4, "RW 04", "Bpk Dedy",
-                                        Arrays.asList(
-                                                new RTModel(1, "RT 01", "Bpk Mukhlas",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Naufal", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Adit", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Mujay", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(2, "RT 02", "Bpk Sujai",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Naufal", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Adit", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Mujay", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(3, "RT 03", "Bpk Samsul",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Naufal", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Adit", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Mujay", "Perempuan", "22")
-                                                        )
-                                                )
-                                        )
-                                )
-                        )
-                )
-        );
-        //dusun dua
-        dusunModels.add(
-                new DusunModel(2, "Cikuya", "Ngasiman",
-                        Arrays.asList(
-                                new RWModel(1, "RW 01", "Bpk Rayhan",
-                                        Arrays.asList(
-                                                new RTModel(1, "RT 01", "Bpk Andi",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Agung", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Rizki", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Dila", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(2, "RT 02", "Bpk Ijad",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Agung", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Rizki", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Dila", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(3, "RT 03", "Bpk Hilmi",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Agung", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Rizki", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Dila", "Perempuan", "22")
-                                                        )
-                                                )
-                                        )
-                                ),
-                                new RWModel(2, "RW 02", "Bpk Teguh",
-                                        Arrays.asList(
-                                                new RTModel(1, "RT 01", "Bpk Andi",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Agung", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Rizki", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Dila", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(2, "RT 02", "Bpk Ijad",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Agung", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Rizki", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Dila", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(3, "RT 03", "Bpk Hilmi",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Agung", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Rizki", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Dila", "Perempuan", "22")
-                                                        )
-                                                )
-                                        )
-                                ),
-                                new RWModel(3, "RW 03", "Bpk Irsyad",
-                                        Arrays.asList(
-                                                new RTModel(1, "RT 01", "Bpk Andi",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Agung", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Rizki", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Dila", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(2, "RT 02", "Bpk Ijad",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Agung", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Rizki", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Dila", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(3, "RT 03", "Bpk Hilmi",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Agung", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Rizki", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Dila", "Perempuan", "22")
-                                                        )
-                                                )
-                                        )
-                                ),
-                                new RWModel(4, "RW 04", "Bpk Eri",
-                                        Arrays.asList(
-                                                new RTModel(1, "RT 01", "Bpk Andi",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Agung", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Rizki", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Dila", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(2, "RT 02", "Bpk Ijad",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Agung", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Rizki", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Dila", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(3, "RT 03", "Bpk Hilmi",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Agung", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Rizki", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Dila", "Perempuan", "22")
-                                                        )
-                                                )
-                                        )
-                                )
-                        )
-                )
-        );
-        //dusun tiga
-        dusunModels.add(
-                new DusunModel(3, "Citundun", "Djudju",
-                        Arrays.asList(
-                                new RWModel(1, "RW 01", "Bpk Jaka",
-                                        Arrays.asList(
-                                                new RTModel(1, "RT 01", "Bpk Opik",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Sabil", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Trica", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Hani", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(2, "RT 02", "Bpk Anton",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Sabil", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Trica", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Hani", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(3, "RT 03", "Bpk Yedi",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Sabil", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Trica", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Hani", "Perempuan", "22")
-                                                        )
-                                                )
-                                        )
-                                ),
-                                new RWModel(2, "RW 02", "Bpk Sendy",
-                                        Arrays.asList(
-                                                new RTModel(1, "RT 01", "Bpk Opik",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Sabil", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Trica", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Hani", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(2, "RT 02", "Bpk Anton",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Sabil", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Trica", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Hani", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(3, "RT 03", "Bpk Yedi",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Sabil", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Trica", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Hani", "Perempuan", "22")
-                                                        )
-                                                )
-                                        )
-                                ),
-                                new RWModel(3, "RW 03", "Bpk Ari",
-                                        Arrays.asList(
-                                                new RTModel(1, "RT 01", "Bpk Opik",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Sabil", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Trica", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Hani", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(2, "RT 02", "Bpk Anton",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Sabil", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Trica", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Hani", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(3, "RT 03", "Bpk Yedi",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Sabil", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Trica", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Hani", "Perempuan", "22")
-                                                        )
-                                                )
-                                        )
-                                ),
-                                new RWModel(4, "RW 04", "Bpk Sahrul",
-                                        Arrays.asList(
-                                                new RTModel(1, "RT 01", "Bpk Opik",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Sabil", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Trica", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Hani", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(2, "RT 02", "Bpk Anton",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Sabil", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Trica", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Hani", "Perempuan", "22")
-                                                        )
-                                                ),
-                                                new RTModel(3, "RT 03", "Bpk Yedi",
-                                                        Arrays.asList(
-                                                                new PeopleModel(1, 1111, "Sabil", "Laki-laki", "20"),
-                                                                new PeopleModel(2, 2222, "Trica", "Laki-laki", "21"),
-                                                                new PeopleModel(3, 3333, "Hani", "Perempuan", "22")
-                                                        )
-                                                )
-                                        )
-                                )
-                        )
-                )
-        );
+        //desa satu
+        KelurahanModel sukahurip = new KelurahanModel(111, "Sukahurip", "Pamarican");
 
-        KelurahanModel sukahurip = new KelurahanModel(1, "Sukahurip", "Pamarican");
-        sukahurip.setDusunModels(dusunModels);
+        //dusun
+        DusunModel ciparakan = new DusunModel(111, "Ciparakan", "Nurdin");
+        DusunModel citundun = new DusunModel(222, "Citundun", "Umar");
+
+        //rw ciparakan
+        RWModel tori = new RWModel(111, "RW 01", "Bpk Tori");
+        RWModel fahmi = new RWModel(222, "RW 02", "Bpk Fahmi");
+        RWModel amud = new RWModel(333, "RW 03", "Bpk Amud");
+        RWModel deddy = new RWModel(444, "RW 04", "Bpk Dedy");
+
+        //rw citundun
+        RWModel aldo = new RWModel(555, "RW 05", "Bpk Aldo");
+        RWModel tantan = new RWModel(666, "RW 06", "Bpk Tantan");
+        RWModel wahyu = new RWModel(777, "RW 07", "Bpk Wahyu");
+        RWModel afwa = new RWModel(888, "RW 08", "Bpk Afwa");
+
+        //rt ciparakan
+        RTModel mukhlas = new RTModel(111, "RT 01", "Bpk Mukhlas");
+        RTModel sujai = new RTModel(222, "RT 02", "Bpk Sujai");
+        RTModel samsul = new RTModel(333, "RT 03", "Bpk Samsul");
+
+        //rt citundun
+        RTModel munir = new RTModel(444, "RT 04", "Bpk Munir");
+        RTModel andi = new RTModel(555, "RT 05", "Bpk Andi");
+        RTModel hakim = new RTModel(666, "RT 06", "Bpk Hakim");
+
+        //warga
+        PeopleModel naufal = new PeopleModel(111, 1111, "Naufal", "Laki-laki", "20");
+        PeopleModel adit = new PeopleModel(222, 2222, "Adit", "Laki-laki", "21");
+        PeopleModel mujay = new PeopleModel(333, 3333, "Mujay", "Perempuan", "22");
+
+        //list dusun
+        List<DusunModel> sukahuripList = Arrays.asList(ciparakan, citundun);
+        sukahurip.setDusunModels(sukahuripList);
+
+        //list rw ciparakan
+        List<RWModel> ciparakanList = Arrays.asList(tori, fahmi, amud, deddy);
+        ciparakan.setRwModels(ciparakanList);
+
+        //list rw citundun
+        List<RWModel> citundunList = Arrays.asList(aldo, tantan, wahyu, afwa);
+        citundun.setRwModels(citundunList);
+
+        //list rt tori
+        List<RTModel> toriList = Arrays.asList(mukhlas, sujai, samsul);
+        tori.setRtModels(toriList);
+
+        //list rt afwa
+        List<RTModel> afwaList = Arrays.asList(munir, hakim, andi);
+        afwa.setRtModels(afwaList);
+
+        //set warga
+        List<PeopleModel> mukhlasList = Arrays.asList(naufal, adit, mujay);
+        mukhlas.setPeopleModel(mukhlasList);
+        munir.setPeopleModel(mukhlasList);
+
+        //desa dua
+        KelurahanModel pamarican = new KelurahanModel(222, "Pamarican", "Pamarican");
+
+        KelurahanModel sukajadi = new KelurahanModel(333, "Sukajadi", "Pamarican");
+        KelurahanModel sukamukti = new KelurahanModel(444, "Sukamukti", "Pamarican");
+        KelurahanModel sukajaya = new KelurahanModel(555, "Sukajaya", "Pamarican");
 
         //generate data
         this.kelurahanModels.add(sukahurip);
+        this.kelurahanModels.add(pamarican);
+        this.kelurahanModels.add(sukajadi);
+        this.kelurahanModels.add(sukamukti);
+        this.kelurahanModels.add(sukajaya);
     }
 
     @GetMapping
     public ModelAndView get() {
         ModelAndView view = new ModelAndView("kelurahan/index");
-        view.addObject("kelurahan", kelurahanModels);
+        view.addObject("data", this.kelurahanModels);
         return view;
     }
 
@@ -360,73 +104,71 @@ public class KelurahanController {
     public ModelAndView detail(@PathVariable("id") Integer id) {
         ModelAndView view = new ModelAndView("kelurahan/detail");
 
-        Optional<KelurahanModel> detail = kelurahanModels.stream()
-                .filter(desa -> desa.getId() == id)
-                .findFirst();
-
-        if (detail.isPresent()) {
-            view.addObject("data", detail.get());
-        } else {
-            return new ModelAndView("redirect:/desa");
+        for (KelurahanModel kelurahan : this.kelurahanModels) {
+            if (kelurahan.getId().equals(id)) {
+                view.addObject("kelurahan", kelurahan);
+                return view;
+            }
         }
-        return view;
+        return new ModelAndView("redirect:/desa");
     }
 
     @GetMapping("/dusun/detail/{id}")
     public ModelAndView detailDusun(@PathVariable("id") Integer id) {
         ModelAndView view = new ModelAndView("kelurahan/dusun");
 
-        Optional<DusunModel> dusunModel = this.kelurahanModels.stream()
-                .flatMap(kelurahan-> kelurahan.getDusunModels().stream())
-                .filter(dusun -> dusun.getId() == id)
-                .findFirst();
-
-        if (dusunModel.isPresent()) {
-            DusunModel dusun = dusunModel.get();
-            System.out.println("Dusun: " + dusun);
-            System.out.println("Kelurahan: " + dusun.getKelurahan());
-            view.addObject("dusun", dusunModel.get());
-//            view.addObject("kelurahan", dusunModel.get().getKelurahan().getName());
-        } else {
-            return new ModelAndView("redirect:/desa");
+        for (KelurahanModel kelurahan : this.kelurahanModels) {
+            for (DusunModel dusun : kelurahan.getDusunModels()) {
+                if (dusun.getId().equals(id)) {
+                    view.addObject("kelurahan", kelurahan);
+                    view.addObject("dusun", dusun);
+                    return view;
+                }
+            }
         }
-        return view;
+        return new ModelAndView("redirect:/desa");
     }
 
     @GetMapping("/rw/detail/{id}")
     public ModelAndView detailRW(@PathVariable("id") Integer id) {
         ModelAndView view = new ModelAndView("kelurahan/rw");
 
-        Optional<RWModel> rwModel = this.kelurahanModels.stream()
-                .flatMap(kelurahan -> kelurahan.getDusunModels().stream())
-                .flatMap(dusun -> dusun.getRwModels().stream())
-                .filter(rw -> rw.getId() == id)
-                .findFirst();
-
-        if (rwModel.isPresent()) {
-            view.addObject("rw", rwModel.get());
-        } else {
-            return new ModelAndView("redirect:/dusun/detail/{id}");
+        for (KelurahanModel kelurahan : this.kelurahanModels) {
+            for (DusunModel dusun : kelurahan.getDusunModels()) {
+                for (RWModel rw : dusun.getRwModels()) {
+                    if (rw.getId().equals(id)) {
+                        view.addObject("kelurahan", kelurahan);
+                        view.addObject("dusun", dusun);
+                        view.addObject("rw", rw);
+                        return view;
+                    }
+                }
+            }
         }
-        return view;
+
+        return new ModelAndView("redirect:/desa");
     }
+
 
     @GetMapping("/rt/detail/{id}")
     public ModelAndView detailRt(@PathVariable("id") Integer id) {
         ModelAndView view = new ModelAndView("kelurahan/rt");
 
-        Optional<RTModel> rtModel = this.kelurahanModels.stream()
-                .flatMap(kelurahan -> kelurahan.getDusunModels().stream())
-                .flatMap(dusun -> dusun.getRwModels().stream())
-                .flatMap(rw -> rw.getRtModels().stream())
-                .filter(rt -> rt.getId() == id)
-                .findFirst();
-
-        if (rtModel.isPresent()) {
-            view.addObject("rt", rtModel.get());
-        } else {
-            return new ModelAndView("redirect:/rw/detail/{id}");
+        for (KelurahanModel kelurahan : this.kelurahanModels) {
+            for (DusunModel dusun : kelurahan.getDusunModels()) {
+                for (RWModel rw : dusun.getRwModels()) {
+                    for (RTModel rt : rw.getRtModels()) {
+                        if (rt.getId().equals(id)) {
+                            view.addObject("kelurahan", kelurahan);
+                            view.addObject("dusun", dusun);
+                            view.addObject("rw", rw);
+                            view.addObject("rt", rt);
+                            return view;
+                        }
+                    }
+                }
+            }
         }
-        return view;
+        return new ModelAndView("redirect:/desa");
     }
 }

@@ -26,12 +26,20 @@
                         <label for="id" class="form-label">#</label>
                         <input type="text" class="form-control" id="id" name="id" th:value="${rt.id}" readonly>
                     </div>
-                    <!--                    <div class="mb-3">-->
-                    <!--                        <label for="kelurahan" class="form-label">Kecamatan</label>-->
-                    <!--                        <input type="text" class="form-control" id="kelurahan" name="kelurahan" th:value="${kelurahan.name}" readonly>-->
-                    <!--                    </div>-->
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
+                        <label for="kelurahan" class="form-label">Desa</label>
+                        <input type="text" class="form-control" id="kelurahan" name="kelurahan" th:value="${kelurahan.name}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dusun" class="form-label">Dusun</label>
+                        <input type="text" class="form-control" id="dusun" name="name" th:value="${dusun.name}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rw" class="form-label">RW</label>
+                        <input type="text" class="form-control" id="rw" name="name" th:value="${rw.name}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">RT</label>
                         <input type="text" class="form-control" id="name" name="name" th:value="${rt.name}" readonly>
                     </div>
                     <div class="mb-3">
@@ -64,8 +72,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="btn-footer mb-3 ms-3">
-                    <a th:href="@{~/desa/rw/detail/{id}(id = ${rt.id})}" class="btn btn-outline-danger">Back</a>
+                <div class="d-flex justify-content-end mb-3 me-3">
+                    <button type="button" class="btn btn-outline-secondary" onclick="window.history.back();">Back</button>
                 </div>
             </div>
         </div>
