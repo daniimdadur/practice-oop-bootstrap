@@ -2,15 +2,12 @@ package org.security.project.detail.siswa.kelurahan.controller;
 
 import org.security.project.detail.siswa.kelurahan.model.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/desa")
@@ -95,14 +92,14 @@ public class KelurahanController {
 
     @GetMapping
     public ModelAndView get() {
-        ModelAndView view = new ModelAndView("kelurahan/index");
+        ModelAndView view = new ModelAndView("kelurahan/dashboard/index");
         view.addObject("data", this.kelurahanModels);
         return view;
     }
 
     @GetMapping("/detail/{id}")
     public ModelAndView detail(@PathVariable("id") Integer id) {
-        ModelAndView view = new ModelAndView("kelurahan/detail");
+        ModelAndView view = new ModelAndView("kelurahan/detail/desa");
 
         for (KelurahanModel kelurahan : this.kelurahanModels) {
             if (kelurahan.getId().equals(id)) {
@@ -115,7 +112,7 @@ public class KelurahanController {
 
     @GetMapping("/dusun/detail/{id}")
     public ModelAndView detailDusun(@PathVariable("id") Integer id) {
-        ModelAndView view = new ModelAndView("kelurahan/dusun");
+        ModelAndView view = new ModelAndView("kelurahan/detail/dusun");
 
         for (KelurahanModel kelurahan : this.kelurahanModels) {
             for (DusunModel dusun : kelurahan.getDusunModels()) {
@@ -131,7 +128,7 @@ public class KelurahanController {
 
     @GetMapping("/rw/detail/{id}")
     public ModelAndView detailRW(@PathVariable("id") Integer id) {
-        ModelAndView view = new ModelAndView("kelurahan/rw");
+        ModelAndView view = new ModelAndView("kelurahan/detail/rw");
 
         for (KelurahanModel kelurahan : this.kelurahanModels) {
             for (DusunModel dusun : kelurahan.getDusunModels()) {
@@ -152,7 +149,7 @@ public class KelurahanController {
 
     @GetMapping("/rt/detail/{id}")
     public ModelAndView detailRt(@PathVariable("id") Integer id) {
-        ModelAndView view = new ModelAndView("kelurahan/rt");
+        ModelAndView view = new ModelAndView("kelurahan/detail/rt");
 
         for (KelurahanModel kelurahan : this.kelurahanModels) {
             for (DusunModel dusun : kelurahan.getDusunModels()) {
@@ -169,6 +166,40 @@ public class KelurahanController {
                 }
             }
         }
+        return new ModelAndView("redirect:/desa");
+    }
+
+    @GetMapping("/add")
+    public ModelAndView add() {
+        ModelAndView view = new ModelAndView("kelurahan/add/list");
+        KelurahanModel kelurahan = new KelurahanModel();
+
+        List<DusunModel> dusunList = new ArrayList<>();
+
+        //rt
+        ArrayList<RTModel> rt1 = new ArrayList<>();
+        rt1.add(new RTModel(0, "", ""));
+        rt1.add(new RTModel(0, "", ""));
+
+        //rw
+        ArrayList<RWModel> rw1 = new ArrayList<>();
+        rw1.add(new RWModel(0, "", "", rt1));
+        rw1.add(new RWModel(0, "", "", rt1));
+
+        //dusun
+        DusunModel dusun1 = new DusunModel(0, "", "", rw1);
+        dusunList.add(dusun1);
+
+        //add to kelurahan
+        kelurahan.setDusunModels(dusunList);
+
+        view.addObject("desa", kelurahan);
+        return view;
+    }
+
+    @PostMapping("/save")
+    public ModelAndView save(@ModelAttribute("desa") KelurahanModel kelurahan) {
+        this.kelurahanModels.add(kelurahan);
         return new ModelAndView("redirect:/desa");
     }
 }

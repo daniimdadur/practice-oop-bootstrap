@@ -47,21 +47,22 @@
                     <h5 class="card-header" th:text="${history.schoolName}"></h5>
                     <div class="card-body">
                         <div class="col-12 mb-3">
+                            <input type="hidden" th:name="|schoolHistory[${hisLup.index}].id|" th:value="${hisLup.index + 1}">
                             <div class="mb-3">
                                 <label th:for="|id_${hisLup.index}_schoolName|" class="form-label">School Name</label>
-                                <input type="text" class="form-control" th:id="|id_${hisLup.index}_schoolName|" th:name="|schoolHistory[${hisLup.index}].schoolName|" th:value="${history.schoolName}">
+                                <input type="text" class="form-control" th:id="|id_${hisLup.index}_schoolName|" th:name="|schoolHistory[${hisLup.index}].schoolName|">
                             </div>
                             <div class="mb-3">
                                 <label th:for="|id_${hisLup.index}_schoolAddress|" class="form-label">School Address</label>
-                                <input type="text" class="form-control" th:id="|id_${hisLup.index}_schoolAddress|" th:name="|schoolHistory[${hisLup.index}].schoolAddress|" th:value="${history.schoolAddress}">
+                                <input type="text" class="form-control" th:id="|id_${hisLup.index}_schoolAddress|" th:name="|schoolHistory[${hisLup.index}].schoolAddress|">
                             </div>
                             <div class="mb-3">
                                 <label th:for="|id_${hisLup.index}_schoolCity|" class="form-label">School City</label>
-                                <input type="text" class="form-control" th:id="|id_${hisLup.index}_schoolCity|" th:name="|schoolHistory[${hisLup.index}].schoolCity|" th:value="${history.schoolCity}">
+                                <input type="text" class="form-control" th:id="|id_${hisLup.index}_schoolCity|" th:name="|schoolHistory[${hisLup.index}].schoolCity|">
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div class="container-fluid">
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
@@ -74,18 +75,19 @@
                             </thead>
                             <tbody>
                             <tr th:each="class, classLup : ${history.schoolClasses}">
-                                <th scope="row" th:text="${classLup.index}"></th>
+                                <th scope="row" th:text="${classLup.index + 1}"></th>
                                 <td>
-                                    <input type="text" class="form-control" th:name="|schoolHistory[${hisLup.index}].schoolClasses[${classLup.index}].className|" th:value="${class.schoolClass}">
+                                    <input type="hidden" th:name="|schoolHistory[${hisLup.index}].schoolClasses[${classLup.index}].id|" th:value="${classLup.index + 1}">
+                                    <input type="text" class="form-control" th:name="|schoolHistory[${hisLup.index}].schoolClasses[${classLup.index}].schoolClass|" th:value="${class.schoolClass}">
                                 </td>
                                 <td>
-                                    <input type="date" class="form-control" th:name="|schoolHistory[${hisLup.index}].schoolClasses[${classLup.index}].startDate|" th:value="${class.startDate}">
+                                    <input type="date" class="form-control" th:name="|schoolHistory[${hisLup.index}].schoolClasses[${classLup.index}].startDate|">
                                 </td>
                                 <td>
-                                    <input type="date" class="form-control" th:name="|schoolHistory[${hisLup.index}].schoolClasses[${classLup.index}].endDate|" th:value="${class.endDate}">
+                                    <input type="date" class="form-control" th:name="|schoolHistory[${hisLup.index}].schoolClasses[${classLup.index}].endDate|">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" th:name="|schoolHistory[${hisLup.index}].schoolClasses[${classLup.index}].teacherName|" th:value="${class.teacherName}">
+                                    <input type="text" class="form-control" th:name="|schoolHistory[${hisLup.index}].schoolClasses[${classLup.index}].teacherName|">
                                 </td>
                             </tr>
                             </tbody>
@@ -94,12 +96,11 @@
                 </div>
             </div>
         </div>
-        <div class="btn-footer">
-            <button type="submit" class="btn btn-outline-primary">
+        <div class="d-flex justify-content-end mb-3 me-3">
+            <button type="submit" class="btn btn-outline-success me-2">
                 Save
             </button>
-            <button type="submit" class="btn btn-outline-danger">
-                <a th:href="@{~/student}"></a>
+            <button type="button" class="btn btn-outline-secondary" onclick="window.history.back();">
                 Back
             </button>
         </div>

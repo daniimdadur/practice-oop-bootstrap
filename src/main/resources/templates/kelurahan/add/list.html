@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>desa-add</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar bg-dark border-bottom border-body mb-3" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand">Navbar</a>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<div class="container-fluid">
+    <h4>#Desa Detail</h4>
+    <form th:action="@{~/desa/save}" method="post">
+        <div class="mb-3">
+            <label for="id" class="form-label">#</label>
+            <input type="text" class="form-control" id="id" name="id" th:value="${desa.id}">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Desa</label>
+            <input type="text" class="form-control" id="name" name="name" th:value="${desa.name}">
+        </div>
+        <div class="mb-3">
+            <label for="kec" class="form-label">Kecamatan</label>
+            <input type="text" class="form-control" id="kec" name="kec" th:value="${desa.kec}">
+        </div>
+        <h4>#Dusun Detail</h4>
+        <div th:each="dusun, dusIte : ${desa.dusunModels}">
+            <div>
+                <div class="card mb-3">
+                    <h5 class="card-header" th:text="'#Dusun ' + ${dusIte.index + 1}"></h5>
+                    <div class="card-body">
+                        <input type="hidden" th:name="|dusunModels[${dusIte.index}].id|" th:value="${dusIte.index + 1}">
+                        <div class="mb-3">
+                            <label th:for="|id_${dusIte.index}_name|" class="form-label">Dusun Name</label>
+                            <input type="text" class="form-control" th:id="|id_${dusIte.index}_name|" th:name="|dusunModels[${dusIte.index}].name|">
+                        </div>
+                        <div class="mb-3">
+                            <label th:for="|id_${dusIte.index}_dusunLeader|" class="form-label">Leader Name</label>
+                            <input type="text" class="form-control" th:id="|id_${dusIte.index}_dusunLeader|" th:name="|dusunModels[${dusIte.index}].dusunLeader|">
+                        </div>
+                        <div th:each="rw, rwIter : ${dusun.rwModels}">
+                            <div class="card mb-3">
+                                <h5 class="card-header" th:text="'#RW ' + ${rwIter.index + 1}"></h5>
+                                <div class="card-body">
+                                    <div class="col-12-mb-3">
+                                        <input type="hidden" th:name="|dusunModels[${dusIte.index}].rwModels[${rwIter.index}].id|" th:value="${rwIter.index + 1}">
+                                        <div class="mb-3">
+                                            <label th:for="|id_${rwIter.index}_name|" class="form-label">RW Name</label>
+                                            <input type="text" class="form-control" th:id="|id_${rwIter.index}_name|" th:name="|dusunModels[${dusIte.index}].rwModels[${rwIter.index}].name|">
+                                        </div>
+                                        <div class="mb-0">
+                                            <label th:for="|id_${rwIter.index}_dusunLeader|" class="form-label">Leader Name</label>
+                                            <input type="text" class="form-control" th:id="|id_${rwIter.index}_dusunLeader|" th:name="|dusunModels[${dusIte.index}].rwModels[${rwIter.index}].rwLeader|">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mb-3 me-3">
+            <button type="submit" class="btn btn-outline-success me-2">
+                Save
+            </button>
+            <button type="button" class="btn btn-outline-secondary" onclick="window.history.back();">
+                Back
+            </button>
+        </div>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>

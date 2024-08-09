@@ -49,7 +49,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="dusun, stat : ${kelurahan.dusunModels}">
-                            <td th:text="${stat.index + 1}"></td>
+                            <th scope="row" th:text="${stat.index + 1}"></th>
                             <td th:text="${dusun.id}"></td>
                             <td th:text="${dusun.name}"></td>
                             <td th:text="${dusun.dusunLeader}"></td>
