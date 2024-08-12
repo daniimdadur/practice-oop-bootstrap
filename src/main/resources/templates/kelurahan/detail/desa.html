@@ -54,7 +54,7 @@
                             <td th:text="${dusun.name}"></td>
                             <td th:text="${dusun.dusunLeader}"></td>
                             <td>
-                                <a th:href="@{~/desa/dusun/detail/{id}(id = ${dusun.id})}" class="btn btn-outline-primary">
+                                <a th:href="@{~/desa/desa/{id}/dusun/{dusunId}(id = ${id})(dusunId = ${dusun.id})}" class="btn btn-outline-primary">
                                     <i class="fa-regular fa-eye"></i>Detail
                                 </a>
                             </td>

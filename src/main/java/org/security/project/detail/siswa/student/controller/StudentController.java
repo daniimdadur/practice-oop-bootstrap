@@ -1,5 +1,6 @@
 package org.security.project.detail.siswa.student.controller;
 
+import org.security.project.detail.siswa.kelurahan.model.KelurahanModel;
 import org.security.project.detail.siswa.student.model.SchoolClassModel;
 import org.security.project.detail.siswa.student.model.SchoolHistoryModel;
 import org.security.project.detail.siswa.student.model.StudentModel;
@@ -412,7 +413,9 @@ public class StudentController {
     @GetMapping("/detail/{id}")
     public ModelAndView getDetail(@PathVariable("id") Integer id) {
         ModelAndView view = new ModelAndView("student/detail");
-        Optional<StudentModel> detail = studentList.stream().filter(student -> student.getId() == id).findFirst();
+        Optional<StudentModel> detail = studentList.stream()
+                .filter(student -> student.getId().equals(id))
+                .findFirst();
         if (detail.isPresent()) {
             view.addObject("student", detail.get());
         } else {
@@ -468,6 +471,30 @@ public class StudentController {
     @PostMapping("/save")
     public ModelAndView save(@ModelAttribute("student") StudentModel student) {
         this.studentList.add(student);
+        return new ModelAndView("redirect:/student");
+    }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView edit(@PathVariable("id") Integer id) {
+        ModelAndView view = new ModelAndView("student/edit");
+
+        for (StudentModel student : this.studentList) {
+            if (student.getId().equals(id)) {
+                view.addObject("student", student);
+                return view;
+            }
+        }
+        return new ModelAndView("redirect:/student");
+    }
+
+    @PostMapping("/update/{id}")
+    public ModelAndView update(@PathVariable("id") Integer id, @ModelAttribute("student") StudentModel student) {
+        for (int i = 0; i < this.studentList.size(); i++) {
+            if (student.getId().equals(id)) {
+                this.studentList.set(i, student);
+                return new ModelAndView("redirect:/student");
+            }
+        }
         return new ModelAndView("redirect:/student");
     }
 }

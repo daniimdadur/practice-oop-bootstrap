@@ -11,14 +11,33 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RTModel {
-    private Integer id;
+    private String id;
     private String name;
     private String rtLeader;
+    private KelurahanModel kelurahan;
+    private DusunModel dusun;
+    private RWModel rw;
     private List<PeopleModel> peopleModel = new ArrayList<>();
 
-    public RTModel(Integer id, String name, String rtLeader) {
+    public RTModel(String id, String name, String rtLeader) {
         this.id = id;
         this.name = name;
         this.rtLeader = rtLeader;
+    }
+
+    public RTModel(String id, String name, String rtLeader, List<PeopleModel> peopleModel) {
+        this.id = id;
+        this.name = name;
+        this.rtLeader = rtLeader;
+        this.peopleModel = peopleModel;
+    }
+
+    public RTModel(String id, String name, String rtLeader, KelurahanModel kelurahan, DusunModel dusun, RWModel rw) {
+        this.id = id;
+        this.name = name;
+        this.rtLeader = rtLeader;
+        this.kelurahan = kelurahan;
+        this.dusun = dusun;
+        this.rw = rw;
     }
 }

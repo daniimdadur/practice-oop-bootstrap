@@ -8,9 +8,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PeopleModel {
-    private Integer id;
+    private String id;
     private Integer nik;
     private String nama;
     private String gender;
     private String age;
+    private KelurahanModel kelurahan;
+    private DusunModel dusun;
+    private RWModel rw;
+    private RTModel rt;
+
+    public PeopleModel(String id, Integer nik, String nama, String gender, String age) {
+        this.id = id;
+        this.nik = nik;
+        this.nama = nama;
+        this.gender = gender;
+        this.age = age;
+    }
+
+
 }

@@ -18,7 +18,7 @@
 </nav>
 <div class="container-fluid">
     <h3>Desa List</h3>
-    <a th:href="@{~/desa/add}" class="btn btn-outline-dark mb-3">Add New Desa</a>
+    <a th:href="@{~/desa/add}" class="btn btn-outline-info mb-3">Add New Desa</a>
     <table class="table table-bordered table-hover">
         <thead>
         <tr>
@@ -39,12 +39,18 @@
                 <a th:href="@{~/desa/detail/{id}(id = ${item.id})}" class="btn btn-outline-primary">
                     <i class="fa-regular fa-eye"></i>Detail
                 </a>
+                <a th:href="@{~/desa/edit/{id}(id = ${item.id})}" class="btn btn-outline-warning">
+                    Edit
+                </a>
+                <a th:href="@{~/desa/delete/{id}(id = ${item.id})}" class="btn btn-outline-danger">
+                    Delete
+                </a>
             </td>
         </tr>
         </tbody>
     </table>
     <div class="d-flex justify-content-end mb-3 me-3">
-        <a th:href="@{~/student}" class="btn btn-outline-warning">Student</a>
+        <a th:href="@{~/student}" class="btn btn-outline-dark">Student</a>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

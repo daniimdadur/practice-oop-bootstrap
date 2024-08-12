@@ -10,77 +10,95 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-@RequestMapping("/desa")
+@RequestMapping("/")
 public class KelurahanController {
     private final List<KelurahanModel> kelurahanModels = new ArrayList<>();
 
     public KelurahanController() {
 
         //desa satu
-        KelurahanModel sukahurip = new KelurahanModel(111, "Sukahurip", "Pamarican");
+        KelurahanModel sukahurip = new KelurahanModel("111", "Sukahurip", "Pamarican");
 
         //dusun
-        DusunModel ciparakan = new DusunModel(111, "Ciparakan", "Nurdin");
-        DusunModel citundun = new DusunModel(222, "Citundun", "Umar");
+        DusunModel ciparakan = new DusunModel("111", "Ciparakan", "Nurdin");
+        DusunModel citundun = new DusunModel("222", "Citundun", "Umar");
 
         //rw ciparakan
-        RWModel tori = new RWModel(111, "RW 01", "Bpk Tori");
-        RWModel fahmi = new RWModel(222, "RW 02", "Bpk Fahmi");
-        RWModel amud = new RWModel(333, "RW 03", "Bpk Amud");
-        RWModel deddy = new RWModel(444, "RW 04", "Bpk Dedy");
+        RWModel tori = new RWModel("111", "RW 01", "Bpk Tori");
+        RWModel fahmi = new RWModel("222", "RW 02", "Bpk Fahmi");
+        RWModel amud = new RWModel("333", "RW 03", "Bpk Amud");
+        RWModel deddy = new RWModel("444", "RW 04", "Bpk Dedy");
 
         //rw citundun
-        RWModel aldo = new RWModel(555, "RW 05", "Bpk Aldo");
-        RWModel tantan = new RWModel(666, "RW 06", "Bpk Tantan");
-        RWModel wahyu = new RWModel(777, "RW 07", "Bpk Wahyu");
-        RWModel afwa = new RWModel(888, "RW 08", "Bpk Afwa");
+        RWModel aldo = new RWModel("555", "RW 05", "Bpk Aldo");
+        RWModel tantan = new RWModel("666", "RW 06", "Bpk Tantan");
+        RWModel wahyu = new RWModel("777", "RW 07", "Bpk Wahyu");
+        RWModel afwa = new RWModel("888", "RW 08", "Bpk Afwa");
 
         //rt ciparakan
-        RTModel mukhlas = new RTModel(111, "RT 01", "Bpk Mukhlas");
-        RTModel sujai = new RTModel(222, "RT 02", "Bpk Sujai");
-        RTModel samsul = new RTModel(333, "RT 03", "Bpk Samsul");
+        RTModel mukhlas = new RTModel("111", "RT 01", "Bpk Mukhlas");
+        RTModel sujai = new RTModel("222", "RT 02", "Bpk Sujai");
+        RTModel samsul = new RTModel("333", "RT 03", "Bpk Samsul");
 
         //rt citundun
-        RTModel munir = new RTModel(444, "RT 04", "Bpk Munir");
-        RTModel andi = new RTModel(555, "RT 05", "Bpk Andi");
-        RTModel hakim = new RTModel(666, "RT 06", "Bpk Hakim");
+        RTModel munir = new RTModel("444", "RT 04", "Bpk Munir");
+        RTModel andi = new RTModel("555", "RT 05", "Bpk Andi");
+        RTModel hakim = new RTModel("666", "RT 06", "Bpk Hakim");
 
         //warga
-        PeopleModel naufal = new PeopleModel(111, 1111, "Naufal", "Laki-laki", "20");
-        PeopleModel adit = new PeopleModel(222, 2222, "Adit", "Laki-laki", "21");
-        PeopleModel mujay = new PeopleModel(333, 3333, "Mujay", "Perempuan", "22");
+        PeopleModel naufal = new PeopleModel("111", 1111, "Naufal", "Laki-laki", "20");
+        PeopleModel adit = new PeopleModel("222", 2222, "Adit", "Laki-laki", "21");
+        PeopleModel mujay = new PeopleModel("333", 3333, "Mujay", "Perempuan", "22");
 
         //list dusun
-        List<DusunModel> sukahuripList = Arrays.asList(ciparakan, citundun);
+        List<DusunModel> sukahuripList = new ArrayList<>();
+        sukahuripList.add(ciparakan);
+        sukahuripList.add(citundun);
         sukahurip.setDusunModels(sukahuripList);
 
         //list rw ciparakan
-        List<RWModel> ciparakanList = Arrays.asList(tori, fahmi, amud, deddy);
+        List<RWModel> ciparakanList = new ArrayList<>();
+        ciparakanList.add(tori);
+        ciparakanList.add(fahmi);
+        ciparakanList.add(amud);
+        ciparakanList.add(deddy);
         ciparakan.setRwModels(ciparakanList);
 
         //list rw citundun
-        List<RWModel> citundunList = Arrays.asList(aldo, tantan, wahyu, afwa);
+        List<RWModel> citundunList = new ArrayList<>();
+        citundunList.add(aldo);
+        citundunList.add(tantan);
+        citundunList.add(wahyu);
+        citundunList.add(afwa);
         citundun.setRwModels(citundunList);
 
         //list rt tori
-        List<RTModel> toriList = Arrays.asList(mukhlas, sujai, samsul);
+        List<RTModel> toriList = new ArrayList<>();
+        toriList.add(mukhlas);
+        toriList.add(sujai);
+        toriList.add(samsul);
         tori.setRtModels(toriList);
 
         //list rt afwa
-        List<RTModel> afwaList = Arrays.asList(munir, hakim, andi);
+        List<RTModel> afwaList = new ArrayList<>();
+        afwaList.add(munir);
+        afwaList.add(hakim);
+        afwaList.add(andi);
         afwa.setRtModels(afwaList);
 
         //set warga
-        List<PeopleModel> mukhlasList = Arrays.asList(naufal, adit, mujay);
+        List<PeopleModel> mukhlasList = new ArrayList<>();
+        mukhlasList.add(naufal);
+        mukhlasList.add(adit);
+        mukhlasList.add(mujay);
         mukhlas.setPeopleModel(mukhlasList);
-        munir.setPeopleModel(mukhlasList);
 
         //desa dua
-        KelurahanModel pamarican = new KelurahanModel(222, "Pamarican", "Pamarican");
+        KelurahanModel pamarican = new KelurahanModel("222", "Pamarican", "Pamarican");
 
-        KelurahanModel sukajadi = new KelurahanModel(333, "Sukajadi", "Pamarican");
-        KelurahanModel sukamukti = new KelurahanModel(444, "Sukamukti", "Pamarican");
-        KelurahanModel sukajaya = new KelurahanModel(555, "Sukajaya", "Pamarican");
+        KelurahanModel sukajadi = new KelurahanModel("333", "Sukajadi", "Pamarican");
+        KelurahanModel sukamukti = new KelurahanModel("444", "Sukamukti", "Pamarican");
+        KelurahanModel sukajaya = new KelurahanModel("555", "Sukajaya", "Pamarican");
 
         //generate data
         this.kelurahanModels.add(sukahurip);
@@ -90,12 +108,12 @@ public class KelurahanController {
         this.kelurahanModels.add(sukajaya);
     }
 
-    @GetMapping
-    public ModelAndView get() {
-        ModelAndView view = new ModelAndView("kelurahan/dashboard/index");
-        view.addObject("data", this.kelurahanModels);
-        return view;
-    }
+//    @GetMapping
+//    public ModelAndView get() {
+//        ModelAndView view = new ModelAndView("kelurahan/dashboard/index");
+//        view.addObject("data", this.kelurahanModels);
+//        return view;
+//    }
 
     @GetMapping("/detail/{id}")
     public ModelAndView detail(@PathVariable("id") Integer id) {
@@ -176,18 +194,21 @@ public class KelurahanController {
 
         List<DusunModel> dusunList = new ArrayList<>();
 
+        //warga
+        ArrayList<PeopleModel> warga1 = new ArrayList<>();
+        warga1.add(new PeopleModel("", 0, "", "", ""));
+        warga1.add(new PeopleModel("", 0, "", "", ""));
+
         //rt
         ArrayList<RTModel> rt1 = new ArrayList<>();
-        rt1.add(new RTModel(0, "", ""));
-        rt1.add(new RTModel(0, "", ""));
+        rt1.add(new RTModel("", "", "", warga1));
 
         //rw
         ArrayList<RWModel> rw1 = new ArrayList<>();
-        rw1.add(new RWModel(0, "", "", rt1));
-        rw1.add(new RWModel(0, "", "", rt1));
+        rw1.add(new RWModel("", "", "", rt1));
 
         //dusun
-        DusunModel dusun1 = new DusunModel(0, "", "", rw1);
+        DusunModel dusun1 = new DusunModel("", "", "", rw1);
         dusunList.add(dusun1);
 
         //add to kelurahan
@@ -200,6 +221,60 @@ public class KelurahanController {
     @PostMapping("/save")
     public ModelAndView save(@ModelAttribute("desa") KelurahanModel kelurahan) {
         this.kelurahanModels.add(kelurahan);
+        return new ModelAndView("redirect:/desa");
+    }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView showEditForm(@PathVariable("id") Integer id) {
+        ModelAndView view = new ModelAndView("kelurahan/edit/list");
+
+        for (KelurahanModel kelurahan : this.kelurahanModels) {
+            if (kelurahan.getId().equals(id)) {
+                view.addObject("desa", kelurahan);
+                return view;
+            }
+        }
+
+        // Jika tidak ditemukan, kembali ke halaman utama
+        return new ModelAndView("redirect:/desa");
+    }
+
+    @PostMapping("/update/{id}")
+    public ModelAndView update(@PathVariable("id") Integer id, @ModelAttribute("desa") KelurahanModel kelurahan) {
+        for (int i = 0; i < this.kelurahanModels.size(); i++) {
+            if (this.kelurahanModels.get(i).getId().equals(id)) {
+                // Update existing kelurahan
+                this.kelurahanModels.set(i, kelurahan);
+                return new ModelAndView("redirect:/desa");
+            }
+        }
+
+        // Jika tidak ditemukan, tambahkan sebagai data baru (opsional)
+//        this.kelurahanModels.add(kelurahan);
+        return new ModelAndView("redirect:/desa");
+    }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Integer id) {
+        ModelAndView view = new ModelAndView("kelurahan/delete/list");
+
+        for (KelurahanModel kelurahan : this.kelurahanModels) {
+            if (kelurahan.getId().equals(id)) {
+                view.addObject("desa", kelurahan);
+                return view;
+            }
+        }
+        return new ModelAndView("redirect:/desa");
+    }
+
+    @PostMapping("/remove/{id}")
+    public ModelAndView remove(@PathVariable("id") Integer id) {
+        for (int i = 0; i < this.kelurahanModels.size(); i++) {
+            if (this.kelurahanModels.get(i).getId().equals(id)) {
+                this.kelurahanModels.remove(i);
+                return new ModelAndView("redirect:/desa");
+            }
+        }
         return new ModelAndView("redirect:/desa");
     }
 }
