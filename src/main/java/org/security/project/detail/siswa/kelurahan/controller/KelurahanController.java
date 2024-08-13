@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Controller
 @RequestMapping("/")
 public class KelurahanController {
     private final List<KelurahanModel> kelurahanModels = new ArrayList<>();
@@ -189,7 +188,7 @@ public class KelurahanController {
 
     @GetMapping("/add")
     public ModelAndView add() {
-        ModelAndView view = new ModelAndView("kelurahan/add/list");
+        ModelAndView view = new ModelAndView();
         KelurahanModel kelurahan = new KelurahanModel();
 
         List<DusunModel> dusunList = new ArrayList<>();
@@ -226,7 +225,7 @@ public class KelurahanController {
 
     @GetMapping("/edit/{id}")
     public ModelAndView showEditForm(@PathVariable("id") Integer id) {
-        ModelAndView view = new ModelAndView("kelurahan/edit/list");
+        ModelAndView view = new ModelAndView();
 
         for (KelurahanModel kelurahan : this.kelurahanModels) {
             if (kelurahan.getId().equals(id)) {
@@ -256,7 +255,7 @@ public class KelurahanController {
 
     @GetMapping("/delete/{id}")
     public ModelAndView delete(@PathVariable("id") Integer id) {
-        ModelAndView view = new ModelAndView("kelurahan/delete/list");
+        ModelAndView view = new ModelAndView();
 
         for (KelurahanModel kelurahan : this.kelurahanModels) {
             if (kelurahan.getId().equals(id)) {

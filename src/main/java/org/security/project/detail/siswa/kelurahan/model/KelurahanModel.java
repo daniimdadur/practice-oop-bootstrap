@@ -1,14 +1,14 @@
 package org.security.project.detail.siswa.kelurahan.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class KelurahanModel {
@@ -21,5 +21,17 @@ public class KelurahanModel {
         this.id = id;
         this.name = name;
         this.kec = kec;
+    }
+
+    public KelurahanModel(String name, String kec, List<DusunModel> dusunModels) {
+        this.name = name;
+        this.kec = kec;
+        this.dusunModels = dusunModels;
+    }
+
+    public KelurahanModel(String name, String kec) {
+        this.name = name;
+        this.kec = kec;
+        this.dusunModels = new ArrayList<>();
     }
 }

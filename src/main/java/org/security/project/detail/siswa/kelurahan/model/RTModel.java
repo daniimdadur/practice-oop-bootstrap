@@ -1,13 +1,13 @@
 package org.security.project.detail.siswa.kelurahan.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class RTModel {
@@ -39,5 +39,16 @@ public class RTModel {
         this.kelurahan = kelurahan;
         this.dusun = dusun;
         this.rw = rw;
+    }
+
+    public RTModel(String name, String rtLeader) {
+        this.name = name;
+        this.rtLeader = rtLeader;
+    }
+
+    public RTModel(String name, String rtLeader, List<PeopleModel> peopleModel) {
+        this.name = name;
+        this.rtLeader = rtLeader;
+        this.peopleModel = peopleModel;
     }
 }

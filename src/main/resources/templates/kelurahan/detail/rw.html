@@ -62,7 +62,7 @@
                             <td th:text="${rt.name}"></td>
                             <td th:text="${rt.rtLeader}"></td>
                             <td>
-                                <a th:href="@{~/desa/rt/detail/{id}(id = ${rt.id})}" class="btn btn-outline-primary">
+                                <a th:href="@{~/desa/desa/{desaId}/dusun/{dusunId}/rw/{rwId}/rt/{rtId}(desaId = ${desaId}, dusunId = ${dusunId}, rwId = ${rwId}, rtId = ${rt.id})}" class="btn btn-outline-primary">
                                     <i class="fa-regular fa-eye"></i>Detail
                                 </a>
                             </td>

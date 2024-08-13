@@ -1,10 +1,11 @@
 package org.security.project.detail.siswa.kelurahan.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+import java.util.UUID;
+
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class PeopleModel {
@@ -27,4 +28,10 @@ public class PeopleModel {
     }
 
 
+    public PeopleModel(Integer nik, String nama, String gender, String age) {
+        this.nik = nik;
+        this.nama = nama;
+        this.gender = gender;
+        this.age = age;
+    }
 }

@@ -1,13 +1,13 @@
 package org.security.project.detail.siswa.kelurahan.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class DusunModel {
@@ -35,5 +35,11 @@ public class DusunModel {
         this.name = name;
         this.dusunLeader = dusunLeader;
         this.kelurahan = kelurahan;
+    }
+
+    public DusunModel(String name, String dusunLeader, List<RWModel> rwModels) {
+        this.name = name;
+        this.dusunLeader = dusunLeader;
+        this.rwModels = rwModels;
     }
 }
