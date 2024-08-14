@@ -46,6 +46,9 @@
                 <a th:href="@{~/student/edit/{id}(id = ${item.id})}" class="btn btn-outline-warning">
                     <i class="fa-regular fa-eye"></i>Edit
                 </a>
+                <a th:href="@{~/student/delete/{id}(id = ${item.id})}" class="btn btn-outline-danger">
+                    Delete
+                </a>
             </td>
         </tr>
         </tbody>

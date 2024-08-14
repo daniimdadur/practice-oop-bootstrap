@@ -203,6 +203,54 @@ public class DesaController {
         return new ModelAndView("redirect:/desa");
     }
 
+    @GetMapping("/edit/{id}")
+    public ModelAndView add(@PathVariable("id") String id) {
+        ModelAndView view = new ModelAndView("kelurahan/edit/list");
+
+        for (KelurahanModel kelurahan : kelurahanList) {
+            if (kelurahan.getId().equals(id)) {
+                view.addObject("desa", kelurahan);
+                return view;
+            }
+        }
+        return new ModelAndView("redirect:/desa");
+    }
+
+    @PostMapping("/update/{id}")
+    public ModelAndView update(@PathVariable("id") String id, @ModelAttribute("desa") KelurahanModel kelurahan) {
+        for (int i = 0; i < kelurahanList.size(); i++) {
+            if (kelurahanList.get(i).getId().equals(id)) {
+                kelurahanList.set(i, kelurahan);
+                return new ModelAndView("redirect:/desa");
+            }
+        }
+        return new ModelAndView("redirect:/desa");
+    }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") String id) {
+        ModelAndView view = new ModelAndView("kelurahan/delete/list");
+
+        for (KelurahanModel kelurahan : kelurahanList) {
+            if (kelurahan.getId().equals(id)) {
+                view.addObject("desa", kelurahan);
+                return view;
+            }
+        }
+        return new ModelAndView("redirect:/desa");
+    }
+
+    @PostMapping("/remove/{id}")
+    public ModelAndView remove(@PathVariable("id") String id, @ModelAttribute KelurahanModel kelurahan) {
+        for (int i = 0; i < kelurahanList.size(); i++) {
+            if (kelurahanList.get(i).getId().equals(id)) {
+                kelurahanList.remove(i);
+                return new ModelAndView("redirect:/desa");
+            }
+        }
+        return new ModelAndView("redirect:/desa");
+    }
+
     private void generateId(KelurahanModel kelurahan) {
         // Generate ID for KelurahanModel
         kelurahan.setId(UUID.randomUUID().toString());

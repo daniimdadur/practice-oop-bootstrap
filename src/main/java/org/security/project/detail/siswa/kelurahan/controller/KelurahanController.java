@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/")
 public class KelurahanController {
     private final List<KelurahanModel> kelurahanModels = new ArrayList<>();
-
+// controller gagal
     public KelurahanController() {
 
         //desa satu
@@ -107,16 +107,16 @@ public class KelurahanController {
         this.kelurahanModels.add(sukajaya);
     }
 
-//    @GetMapping
-//    public ModelAndView get() {
-//        ModelAndView view = new ModelAndView("kelurahan/dashboard/index");
-//        view.addObject("data", this.kelurahanModels);
-//        return view;
-//    }
+    @GetMapping
+    public ModelAndView get() {
+        ModelAndView view = new ModelAndView();
+        view.addObject("data", this.kelurahanModels);
+        return view;
+    }
 
     @GetMapping("/detail/{id}")
     public ModelAndView detail(@PathVariable("id") Integer id) {
-        ModelAndView view = new ModelAndView("kelurahan/detail/desa");
+        ModelAndView view = new ModelAndView();
 
         for (KelurahanModel kelurahan : this.kelurahanModels) {
             if (kelurahan.getId().equals(id)) {
@@ -129,7 +129,7 @@ public class KelurahanController {
 
     @GetMapping("/dusun/detail/{id}")
     public ModelAndView detailDusun(@PathVariable("id") Integer id) {
-        ModelAndView view = new ModelAndView("kelurahan/detail/dusun");
+        ModelAndView view = new ModelAndView();
 
         for (KelurahanModel kelurahan : this.kelurahanModels) {
             for (DusunModel dusun : kelurahan.getDusunModels()) {
@@ -145,7 +145,7 @@ public class KelurahanController {
 
     @GetMapping("/rw/detail/{id}")
     public ModelAndView detailRW(@PathVariable("id") Integer id) {
-        ModelAndView view = new ModelAndView("kelurahan/detail/rw");
+        ModelAndView view = new ModelAndView();
 
         for (KelurahanModel kelurahan : this.kelurahanModels) {
             for (DusunModel dusun : kelurahan.getDusunModels()) {
@@ -166,7 +166,7 @@ public class KelurahanController {
 
     @GetMapping("/rt/detail/{id}")
     public ModelAndView detailRt(@PathVariable("id") Integer id) {
-        ModelAndView view = new ModelAndView("kelurahan/detail/rt");
+        ModelAndView view = new ModelAndView();
 
         for (KelurahanModel kelurahan : this.kelurahanModels) {
             for (DusunModel dusun : kelurahan.getDusunModels()) {
@@ -247,9 +247,6 @@ public class KelurahanController {
                 return new ModelAndView("redirect:/desa");
             }
         }
-
-        // Jika tidak ditemukan, tambahkan sebagai data baru (opsional)
-//        this.kelurahanModels.add(kelurahan);
         return new ModelAndView("redirect:/desa");
     }
 

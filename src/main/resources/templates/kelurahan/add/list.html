@@ -93,7 +93,11 @@
                                                         <input type="text" class="form-control" th:name="|dusunModels[${dusIte.index}].rwModels[${rwIter.index}].rtModels[${rtIter.index}].peopleModel[${wargaIter.index}].nama|">
                                                     </td>
                                                     <td>
-                                                        <input type="text" class="form-control" th:name="|dusunModels[${dusIte.index}].rwModels[${rwIter.index}].rtModels[${rtIter.index}].peopleModel[${wargaIter.index}].gender|">
+                                                        <select class="form-select" th:name="|dusunModels[${dusIte.index}].rwModels[${rwIter.index}].rtModels[${rtIter.index}].peopleModel[${wargaIter.index}].gender|">
+                                                            <option value="" selected disabled>Pilih Gender</option>
+                                                            <option value="Pria">Pria</option>
+                                                            <option value="Wanita">Wanita</option>
+                                                        </select>
                                                     </td>
                                                     <td>
                                                         <input type="text" class="form-control" th:name="|dusunModels[${dusIte.index}].rwModels[${rwIter.index}].rtModels[${rtIter.index}].peopleModel[${wargaIter.index}].age|">

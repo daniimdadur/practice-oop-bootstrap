@@ -97,7 +97,11 @@
                                                         <input type="text" class="form-control" th:name="|dusunModels[${dusIte.index}].rwModels[${rwIter.index}].rtModels[${rtIter.index}].peopleModel[${wargaIter.index}].nama|" th:value="${warga.nama}">
                                                     </td>
                                                     <td>
-                                                        <input type="text" class="form-control" th:name="|dusunModels[${dusIte.index}].rwModels[${rwIter.index}].rtModels[${rtIter.index}].peopleModel[${wargaIter.index}].gender|" th:value="${warga.gender}">
+                                                        <select class="form-select"
+                                                                th:name="|dusunModels[${dusIte.index}].rwModels[${rwIter.index}].rtModels[${rtIter.index}].peopleModel[${wargaIter.index}].gender|">
+                                                            <option value="Pria" th:selected="${warga.gender == 'Pria'}">Pria</option>
+                                                            <option value="Wanita" th:selected="${warga.gender == 'Wanita'}">Wanita</option>
+                                                        </select>
                                                     </td>
                                                     <td>
                                                         <input type="text" class="form-control" th:name="|dusunModels[${dusIte.index}].rwModels[${rwIter.index}].rtModels[${rtIter.index}].peopleModel[${wargaIter.index}].age|" th:value="${warga.age}">

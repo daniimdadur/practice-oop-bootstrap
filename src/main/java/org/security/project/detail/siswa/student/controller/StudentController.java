@@ -490,8 +490,32 @@ public class StudentController {
     @PostMapping("/update/{id}")
     public ModelAndView update(@PathVariable("id") Integer id, @ModelAttribute("student") StudentModel student) {
         for (int i = 0; i < this.studentList.size(); i++) {
-            if (student.getId().equals(id)) {
+            if (this.studentList.get(i).getId().equals(id)) {
                 this.studentList.set(i, student);
+                return new ModelAndView("redirect:/student");
+            }
+        }
+        return new ModelAndView("redirect:/student");
+    }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Integer id) {
+        ModelAndView view = new ModelAndView("student/delete");
+
+        for (StudentModel student : this.studentList) {
+            if (student.getId().equals(id)) {
+                view.addObject("student", student);
+                return view;
+            }
+        }
+        return new ModelAndView("redirect:/student");
+    }
+
+    @PostMapping("/remove/{id}")
+    public ModelAndView remove(@PathVariable("id") Integer id, @ModelAttribute StudentModel student) {
+        for (int i = 0; i < this.studentList.size(); i++) {
+            if (student.getId().equals(id)) {
+                this.studentList.remove(i);
                 return new ModelAndView("redirect:/student");
             }
         }
