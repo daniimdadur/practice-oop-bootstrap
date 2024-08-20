@@ -49,8 +49,14 @@
         </tr>
         </tbody>
     </table>
-    <div class="d-flex justify-content-end mb-3 me-3">
-        <a th:href="@{~/student}" class="btn btn-outline-dark">Student</a>
+    <div class="card mt-3">
+        <h5 class="card-header">Featured</h5>
+        <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a th:href="@{~/student}" class="btn btn-primary">Student</a>
+            <a th:href="@{~/fakultas}" class="btn btn-primary">Fakultas</a>
+        </div>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
