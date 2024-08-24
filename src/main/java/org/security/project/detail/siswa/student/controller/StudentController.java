@@ -405,14 +405,14 @@ public class StudentController {
 
     @GetMapping
     public ModelAndView getAll() {
-        ModelAndView view = new ModelAndView("student/index");
+        ModelAndView view = new ModelAndView("pages/student/index");
         view.addObject("data", studentList);
         return view;
     }
 
     @GetMapping("/detail/{id}")
     public ModelAndView getDetail(@PathVariable("id") Integer id) {
-        ModelAndView view = new ModelAndView("student/detail");
+        ModelAndView view = new ModelAndView("pages/student/detail");
         Optional<StudentModel> detail = studentList.stream()
                 .filter(student -> student.getId().equals(id))
                 .findFirst();
@@ -426,7 +426,7 @@ public class StudentController {
 
     @GetMapping("/add")
     public ModelAndView add() {
-        ModelAndView view = new ModelAndView("student/add");
+        ModelAndView view = new ModelAndView("pages/student/add");
         StudentModel student = new StudentModel();
 
         List<SchoolHistoryModel> schoolHistoryModel = new ArrayList<>();
@@ -476,7 +476,7 @@ public class StudentController {
 
     @GetMapping("/edit/{id}")
     public ModelAndView edit(@PathVariable("id") Integer id) {
-        ModelAndView view = new ModelAndView("student/edit");
+        ModelAndView view = new ModelAndView("pages/student/edit");
 
         for (StudentModel student : this.studentList) {
             if (student.getId().equals(id)) {
@@ -500,7 +500,7 @@ public class StudentController {
 
     @GetMapping("/delete/{id}")
     public ModelAndView delete(@PathVariable("id") Integer id) {
-        ModelAndView view = new ModelAndView("student/delete");
+        ModelAndView view = new ModelAndView("pages/student/delete");
 
         for (StudentModel student : this.studentList) {
             if (student.getId().equals(id)) {

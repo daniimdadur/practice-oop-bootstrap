@@ -174,11 +174,23 @@ public class FakultasServiceImpl implements FakultasSevice{
 
     @Override
     public Optional<FakultasModel> update(FakultasModel fakultasModel, String id) {
-        return null;
+        for (int index = 0; index < fakultasList.size(); index++) {
+            if (fakultasList.get(index).getId().equals(id)) {
+                FakultasModel fakultas = fakultasList.set(index, fakultasModel);
+                return Optional.of(fakultas);
+            }
+        }
+        return Optional.empty();
     }
 
     @Override
     public Optional<FakultasModel> delete(String id) {
-        return null;
+        for (int index = 0; index < fakultasList.size(); index++) {
+            if (fakultasList.get(index).getId().equals(id)) {
+                FakultasModel fakultas = fakultasList.remove(index);
+                return Optional.of(fakultas);
+            }
+        }
+        return Optional.empty();
     }
 }

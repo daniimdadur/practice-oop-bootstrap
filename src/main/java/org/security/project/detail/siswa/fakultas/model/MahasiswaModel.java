@@ -7,10 +7,10 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class MahasiswaModel {
     private String id;
@@ -27,5 +27,9 @@ public class MahasiswaModel {
     public MahasiswaModel(String nim, String name) {
         this.nim = nim;
         this.name = name;
+    }
+
+    public MahasiswaModel() {
+        this.id = UUID.randomUUID().toString();
     }
 }

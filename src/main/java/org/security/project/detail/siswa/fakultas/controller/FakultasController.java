@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +20,7 @@ public class FakultasController {
 
     @GetMapping
     public ModelAndView get() {
-        ModelAndView view = new ModelAndView("fakultas/dashboard/index");
+        ModelAndView view = new ModelAndView("pages/fakultas/dashboard/index");
         List<FakultasModel> fakultas = this.fakultasSevice.getAllFakultas();
         view.addObject("data", fakultas);
         return view;
@@ -29,7 +28,7 @@ public class FakultasController {
 
     @GetMapping("/detail/{id}")
     public ModelAndView fakultasDetail(@PathVariable("id") String id) {
-        ModelAndView view = new ModelAndView("fakultas/detail/fakultas");
+        ModelAndView view = new ModelAndView("pages/fakultas/detail/fakultas");
         view.addObject("id", id);
 
         Optional<FakultasModel> fakultas = this.fakultasSevice.getFakultasById(id);
@@ -41,10 +40,10 @@ public class FakultasController {
         }
     }
 
-    @GetMapping("/fakultas/{fakultasId}/majors/{majorsId}")
+    @GetMapping("/detail/{fakultasId}/majors/{majorsId}")
     public ModelAndView majorsDetail(@PathVariable("fakultasId") String fakultasId,
                                          @PathVariable("majorsId") String majorsId) {
-        ModelAndView view = new ModelAndView("fakultas/detail/majors");
+        ModelAndView view = new ModelAndView("pages/fakultas/detail/majors");
         view.addObject("fakultasId", fakultasId);
         view.addObject("majorId", majorsId);
 
@@ -62,7 +61,7 @@ public class FakultasController {
     public ModelAndView majorsYearDetail(@PathVariable("fakultasId") String fakultasId,
                                          @PathVariable("majorsId") String majorsId,
                                          @PathVariable("majorsYearId") String majorsYearId) {
-        ModelAndView view = new ModelAndView("fakultas/detail/majors-years");
+        ModelAndView view = new ModelAndView("pages/fakultas/detail/majors-years");
         view.addObject("fakultasId", fakultasId);
         view.addObject("majorId", majorsId);
         view.addObject("majorsYearId", majorsYearId);
@@ -84,7 +83,7 @@ public class FakultasController {
                                         @PathVariable("majorsId") String majorsId,
                                         @PathVariable("majorsYearId") String majorsYearId,
                                         @PathVariable("mahasiswaId") String mahasiswaId) {
-        ModelAndView view = new ModelAndView("fakultas/detail/mahasiswa");
+        ModelAndView view = new ModelAndView("pages/fakultas/detail/mahasiswa");
         view.addObject("fakultasId", fakultasId);
         view.addObject("majorsId", majorsId);
         view.addObject("majorsYearId", majorsYearId);
@@ -106,7 +105,7 @@ public class FakultasController {
 
     @GetMapping("/add")
     public ModelAndView add() {
-        ModelAndView view = new ModelAndView("fakultas/add/list");
+        ModelAndView view = new ModelAndView("pages/fakultas/add/list");
 
         FakultasModel fakultas = fakultasSevice.prepareFakultasData();
         view.addObject("fakultas", fakultas);
@@ -115,7 +114,7 @@ public class FakultasController {
 
     @GetMapping("/v2/add")
     public ModelAndView addV2() {
-        ModelAndView view = new ModelAndView("fakultas/add/fakultas");
+        ModelAndView view = new ModelAndView("pages/fakultas/add/fakultas");
 
         FakultasModel fakultas = fakultasSevice.prepareFakultasData();
         view.addObject("fakultas", fakultas);
@@ -126,6 +125,42 @@ public class FakultasController {
     public ModelAndView save(@ModelAttribute FakultasModel fakultas) {
 
         fakultasSevice.save(fakultas);
+        return new ModelAndView("redirect:/fakultas");
+    }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView edit(@PathVariable("id") String id) {
+        ModelAndView view = new ModelAndView("pages/fakultas/edit/fakultas");
+        Optional<FakultasModel> fakultas = fakultasSevice.getFakultasById(id);
+        if (fakultas.isPresent()) {
+            view.addObject("fakultas", fakultas.get());
+            return view;
+        } else {
+            return new ModelAndView("redirect:/fakultas");
+        }
+    }
+
+    @PostMapping("/update")
+    public ModelAndView update(@ModelAttribute FakultasModel fakultas) {
+        fakultasSevice.update(fakultas, fakultas.getId());
+        return new ModelAndView("redirect:/fakultas");
+    }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") String id) {
+        ModelAndView view = new ModelAndView("pages/fakultas/delete/list");
+        Optional<FakultasModel> fakultas = fakultasSevice.getFakultasById(id);
+        if (fakultas.isPresent()) {
+            view.addObject("fakultas", fakultas.get());
+            return view;
+        } else {
+            return new ModelAndView("redirect:/fakultas");
+        }
+    }
+
+    @PostMapping("/remove")
+    public ModelAndView remove(@ModelAttribute FakultasModel fakultas) {
+        fakultasSevice.delete(fakultas.getId());
         return new ModelAndView("redirect:/fakultas");
     }
 }

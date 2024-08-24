@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>index-desa</title>
+</head>
+<body>
+<nav class="navbar bg-dark border-bottom border-body mb-3" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand">Navbar</a>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<div class="container-fluid">
+    <h3>Desa List</h3>
+    <a th:href="@{~/desa/add}" class="btn btn-outline-info mb-3">Add New Desa</a>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>#</th>
+            <th>Desa</th>
+            <th>Kecamatan</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item, stat : ${data}">
+            <th scope="row" th:text="${stat.index + 1}"></th>
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.kec}"></td>
+            <td>
+                <a th:href="@{~/desa/detail/{id}(id = ${item.id})}" class="btn btn-outline-primary">
+                    <i class="fa-regular fa-eye"></i>Detail
+                </a>
+                <a th:href="@{~/desa/edit/{id}(id = ${item.id})}" class="btn btn-outline-warning">
+                    Edit
+                </a>
+                <a th:href="@{~/desa/delete/{id}(id = ${item.id})}" class="btn btn-outline-danger">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="card mt-3">
+        <h5 class="card-header">Featured</h5>
+        <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a th:href="@{~/student}" class="btn btn-primary">Student</a>
+            <a th:href="@{~/fakultas}" class="btn btn-primary">Fakultas</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

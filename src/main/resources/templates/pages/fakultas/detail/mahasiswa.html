@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="|detail-${mahasiswa.name}|"></title>
+</head>
+<body>
+<div class="container-xxl flex-grow-1 container-p-y" layout:fragment="content">
+    <div class="card">
+        <h5 class="card-header">Mahasiswa Detail</h5>
+        <div class="card-body">
+            <form>
+                <fieldset disabled>
+                    <div class="mb-3">
+                        <label for="id" class="form-label">#</label>
+                        <input type="text" id="id" class="form-control" name="id" th:value="${mahasiswa.id}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nim" class="form-label">NIM</label>
+                        <input type="text" id="nim" class="form-control" name="nim" th:value="${mahasiswa.nim}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Mahasiswa Name</label>
+                        <input type="text" id="name" class="form-control" name="name" th:value="${mahasiswa.name}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="name-majors" class="form-label">Majors Name</label>
+                        <input type="text" id="name-majors" class="form-control" name="name-majors" th:value="${jurusan.name}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="fakultas-name" class="form-label">Fakultas Name</label>
+                        <input type="text" id="fakultas-name" class="form-control" name="fakultas-name" th:value="${fakultas.name}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="years" class="form-label">Years</label>
+                        <input type="text" id="years" class="form-control" name="years" th:value="${years.years}">
+                    </div>
+                </fieldset>
+                <h4>Daftar Matakuliah</h4>
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>#</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Dosen</th>
+                        <th>Nilai</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item, stat : ${mahasiswa.mataKuliah}">
+                        <td th:text="${stat.index + 1}"></td>
+                        <td th:text="${item.id}"></td>
+                        <td th:text="${item.code}"></td>
+                        <td th:text="${item.name}"></td>
+                        <td th:text="${item.dosenName}"></td>
+                        <td th:text="${item.nilai}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div class="d-flex justify-content-end mb-3 me-3">
+            <button type="button" class="btn btn-outline-secondary" onclick="window.history.back();">Back</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

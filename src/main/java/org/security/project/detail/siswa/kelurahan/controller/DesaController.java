@@ -79,14 +79,14 @@ public class DesaController {
 
     @GetMapping()
     public ModelAndView get() {
-        ModelAndView view = new ModelAndView("kelurahan/dashboard/index");
+        ModelAndView view = new ModelAndView("pages/kelurahan/dashboard/index");
         view.addObject("data", kelurahanList);
         return view;
     }
 
     @GetMapping("/detail/{id}")
     public ModelAndView desaDetail(@PathVariable("id") String id) {
-        ModelAndView view = new ModelAndView("kelurahan/detail/desa");
+        ModelAndView view = new ModelAndView("pages/kelurahan/detail/desa");
         view.addObject("id", id);
 
         Optional<KelurahanModel> kelurahan = kelurahanList.stream().filter(x -> x.getId().equals(id)).findFirst();
@@ -101,7 +101,7 @@ public class DesaController {
     @GetMapping("/desa/{desaId}/dusun/{dusunId}")
     public ModelAndView dusunDetail(@PathVariable("desaId") String id,
                                     @PathVariable("dusunId") String dusunId) {
-        ModelAndView view = new ModelAndView("kelurahan/detail/dusun");
+        ModelAndView view = new ModelAndView("pages/kelurahan/detail/dusun");
         view.addObject("id", id);
         view.addObject("dusunId", dusunId);
 
@@ -120,7 +120,7 @@ public class DesaController {
     public ModelAndView rwDetail(@PathVariable("desaId") String desaId,
                                  @PathVariable("dusunId") String dusunId,
                                  @PathVariable("rwId") String rwId) {
-        ModelAndView view = new ModelAndView("kelurahan/detail/rw");
+        ModelAndView view = new ModelAndView("pages/kelurahan/detail/rw");
         view.addObject("desaId", desaId);
         view.addObject("dusunId", dusunId);
         view.addObject("rwId", rwId);
@@ -143,7 +143,7 @@ public class DesaController {
                                  @PathVariable("dusunId") String dusunId,
                                  @PathVariable("rwId") String rwId,
                                  @PathVariable("rtId") String rtId) {
-        ModelAndView view = new ModelAndView("kelurahan/detail/rt");
+        ModelAndView view = new ModelAndView("pages/kelurahan/detail/rt");
         view.addObject("desaId", desaId);
         view.addObject("dusunId", dusunId);
         view.addObject("rwId", rwId);
@@ -166,7 +166,7 @@ public class DesaController {
 
     @GetMapping("/add")
     public ModelAndView add() {
-        ModelAndView view = new ModelAndView("kelurahan/add/list");
+        ModelAndView view = new ModelAndView("pages/kelurahan/add/list");
 
         KelurahanModel kelurahan = new KelurahanModel();
 
@@ -205,7 +205,7 @@ public class DesaController {
 
     @GetMapping("/edit/{id}")
     public ModelAndView add(@PathVariable("id") String id) {
-        ModelAndView view = new ModelAndView("kelurahan/edit/list");
+        ModelAndView view = new ModelAndView("pages/kelurahan/edit/list");
 
         for (KelurahanModel kelurahan : kelurahanList) {
             if (kelurahan.getId().equals(id)) {
@@ -229,7 +229,7 @@ public class DesaController {
 
     @GetMapping("/delete/{id}")
     public ModelAndView delete(@PathVariable("id") String id) {
-        ModelAndView view = new ModelAndView("kelurahan/delete/list");
+        ModelAndView view = new ModelAndView("pages/kelurahan/delete/list");
 
         for (KelurahanModel kelurahan : kelurahanList) {
             if (kelurahan.getId().equals(id)) {

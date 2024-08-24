@@ -6,10 +6,10 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class StudentCountModel {
     private String id;
     private Integer years;
@@ -26,5 +26,9 @@ public class StudentCountModel {
     public StudentCountModel(String id, Integer years) {
         this.id = id;
         this.years = years;
+    }
+
+    public StudentCountModel() {
+        this.id = UUID.randomUUID().toString();
     }
 }

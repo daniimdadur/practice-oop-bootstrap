@@ -5,10 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 public class MataKuliahModel {
     private String id;
     private String code;
@@ -21,5 +22,9 @@ public class MataKuliahModel {
         this.name = name;
         this.dosenName = dosenName;
         this.nilai = nilai;
+    }
+
+    public MataKuliahModel() {
+        this.id = UUID.randomUUID().toString();
     }
 }
