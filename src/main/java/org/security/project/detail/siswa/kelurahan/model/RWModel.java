@@ -9,7 +9,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 public class RWModel {
     private String id;
     private String name;
@@ -43,5 +42,9 @@ public class RWModel {
         this.name = name;
         this.rwLeader = rwLeader;
         this.rtModels = rtModels;
+    }
+
+    public RWModel() {
+        this.id = UUID.randomUUID().toString();
     }
 }

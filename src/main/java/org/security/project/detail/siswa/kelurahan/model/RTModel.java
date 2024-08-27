@@ -9,7 +9,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 public class RTModel {
     private String id;
     private String name;
@@ -50,5 +49,9 @@ public class RTModel {
         this.name = name;
         this.rtLeader = rtLeader;
         this.peopleModel = peopleModel;
+    }
+
+    public RTModel() {
+        this.id = UUID.randomUUID().toString();
     }
 }

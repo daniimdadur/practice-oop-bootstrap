@@ -148,7 +148,7 @@ public class FakultasController {
 
     @GetMapping("/delete/{id}")
     public ModelAndView delete(@PathVariable("id") String id) {
-        ModelAndView view = new ModelAndView("pages/fakultas/delete/list");
+        ModelAndView view = new ModelAndView("pages/fakultas/delete/fakultas");
         Optional<FakultasModel> fakultas = fakultasSevice.getFakultasById(id);
         if (fakultas.isPresent()) {
             view.addObject("fakultas", fakultas.get());

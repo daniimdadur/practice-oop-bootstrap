@@ -10,7 +10,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 public class KelurahanModel {
     private String id;
     private String name;
@@ -33,5 +32,9 @@ public class KelurahanModel {
         this.name = name;
         this.kec = kec;
         this.dusunModels = new ArrayList<>();
+    }
+
+    public KelurahanModel() {
+        this.id = UUID.randomUUID().toString();
     }
 }

@@ -1,32 +1,4 @@
 $(document).ready(function () {
-    //event delegation delete majors
-    $('#majors-container').on('click', '.btn-delete', function () {
-        $(this).closest('.major-card').remove();
-    });
-    //event delegation delete year
-    $('#majors-container').on('click', '.btn-delete-year', function () {
-        $(this).closest('.year-card').remove();
-    });
-    //event delegation delete students
-    $('#majors-container').on('click', '.btn-delete-students', function () {
-        $(this).closest('.card-students').remove();
-    });
-    //event delegation delete course row
-    $('#majors-container').on('click', '.btn-delete-course', function () {
-        $(this).closest('.course-row').remove();
-        var $tbody = $(this).parent().parent().parent();
-        console.log($tbody.html())
-        /*
-        $(this).parent().parent().parent().find('.course-row').each(function (index, tr) {
-            console.log("tr " + index);
-        });
-        */
-    });
-    //event delegation delete table
-    $('#majors-container').on('click', '.btn-delete-course-tbl', function () {
-        $(this).closest('.course-container').remove();
-    });
-
     // Event delegation untuk tombol tambah "Majors"
     $('#majors-container').on('click', '.btn-add', function () {
         var majorIndex = $('#majors-container .major-card').length; //Fungsi: Menghitung jumlah elemen dengan kelas major-card di dalam majors-container.
@@ -35,14 +7,9 @@ $(document).ready(function () {
             '<div class="card major-card mb-3">\n' +
             '    <h5 class="card-header d-flex justify-content-between align-items-center">\n' +
             '        Majors\n' +
-            '        <div class="ms-auto">\n' +
-            '            <button class="btn btn-outline-success btn-add" type="button">\n' +
-            '                New Majors\n' +
-            '            </button>\n' +
-            '            <button class="btn btn-outline-danger btn-delete" type="button">\n' +
-            '                Delete Majors\n' +
-            '            </button>\n' +
-            '        </div>\n' +
+            '        <button class="btn btn-outline-dark ms-auto btn-add" type="button">\n' +
+            '            New Majors\n' +
+            '        </button>\n' +
             '    </h5>\n' +
             '    <div class="card-body">\n' +
             '        <div class="mb-3">\n' +
@@ -56,17 +23,12 @@ $(document).ready(function () {
             '    </div>\n' +
             '    <div class="container-fluid years-container">\n' +
             '        <div class="card year-card mb-3">\n' +
-            '<h5 class="card-header d-flex justify-content-between align-items-center">\n' +
-            '    Year\n' +
-            '    <div class="ms-auto">\n' +
-            '        <button class="btn btn-outline-success ms-auto btn-add-year" type="button">\n' +
-            '            New Year Majors\n' +
-            '        </button>\n' +
-            '        <button class="btn btn-outline-danger ms-auto btn-delete-year" type="button">\n' +
-            '            Delete Year Majors\n' +
-            '        </button>\n' +
-            '    </div>\n' +
-            '</h5>\n' +
+            '            <h5 class="card-header d-flex justify-content-between align-items-center">\n' +
+            '                Year\n' +
+            '                <button class="btn btn-outline-dark ms-auto btn-add-year" type="button">\n' +
+            '                    New Year Majors\n' +
+            '                </button>\n' +
+            '            </h5>\n' +
             '            <div class="card-body">\n' +
             '                <div class="mb-3">\n' +
             '                    <label for="id_' + majorIndex + '_years_0" class="form-label">Year</label>\n' +
@@ -75,17 +37,12 @@ $(document).ready(function () {
             '            </div>\n' +
             '            <div class="container-fluid mahasiswa-container">\n' +
             '                <div class="card card-students mb-3">\n' +
-            '<h5 class="card-header d-flex justify-content-between align-items-center">\n' +
-            '    Students\n' +
-            '    <div class="ms-auto">\n' +
-            '        <button class="btn btn-outline-success ms-auto btn-students" type="button">\n' +
-            '            New Students\n' +
-            '        </button>\n' +
-            '        <button class="btn btn-outline-danger ms-auto btn-delete-students" type="button">\n' +
-            '            Delete Students\n' +
-            '        </button>\n' +
-            '    </div>\n' +
-            '</h5>\n' +
+            '                    <h5 class="card-header d-flex justify-content-between align-items-center">\n' +
+            '                        Students\n' +
+            '                        <button class="btn btn-outline-dark ms-auto btn-students" type="button">\n' +
+            '                            New Students\n' +
+            '                        </button>\n' +
+            '                    </h5>\n' +
             '                    <div class="card-body">\n' +
             '                        <div class="mb-3">\n' +
             '                            <label for="id_' + majorIndex + '_years_0_nim_0" class="form-label">NIM</label>\n' +
@@ -97,20 +54,12 @@ $(document).ready(function () {
             '                        </div>\n' +
             '                    </div>\n' +
             '                    <div class="course-container container-fluid">\n' +
-            '<h5 class="d-flex justify-content-between align-items-center">\n' +
-            '    Course\n' +
-            '    <div class="ms-auto">\n' +
-            '        <button class="btn btn-outline-success ms-auto btn-add-course" type="button">\n' +
-            '            New Course\n' +
-            '        </button>\n' +
-            '        <button class="btn btn-outline-danger ms-auto btn-delete-course-tbl" type="button">\n' +
-            '            Delete Course\n' +
-            '        </button>\n' +
-            '<button class="btn btn-outline-danger ms-auto btn-delete-course-tbl" type="button">\n' +
-            '    Delete Course Table\n' +
-            '</button>\n' +
-            '    </div>\n' +
-            '</h5>' +
+            '                        <h5 class="d-flex justify-content-between align-items-center">\n' +
+            '                            Course\n' +
+            '                            <button class="btn btn-outline-dark ms-auto btn-add-course" type="button">\n' +
+            '                                New Course\n' +
+            '                            </button>\n' +
+            '                        </h5>\n' +
             '                        <table class="table table-striped table-hover table-bordered">\n' +
             '                            <thead>\n' +
             '                                <tr>\n' +
@@ -119,7 +68,6 @@ $(document).ready(function () {
             '                                    <th>Name</th>\n' +
             '                                    <th>Dosen</th>\n' +
             '                                    <th>Nilai</th>\n' +
-            '                                    <th>Action</th>\n' +
             '                                </tr>\n' +
             '                            </thead>\n' +
             '                            <tbody class="course-body">\n' +
@@ -137,11 +85,6 @@ $(document).ready(function () {
             '                                    <td>\n' +
             '                                        <input type="text" class="form-control" name="jurusanModels['+ majorIndex +'].studentCountModels[0].mahasiswa[0].mataKuliah[0].nilai">\n' +
             '                                    </td>\n' +
-            '<td>\n' +
-            '    <a class="btn btn-outline-danger btn-delete-course">\n' +
-            '        <i class="bi bi-trash3-fill"></i>&nbsp;Delete\n' +
-            '    </a>\n' +
-            '</td>\n' +
             '                                </tr>\n' +
             '                            </tbody>\n' +
             '                        </table>\n' +
@@ -163,17 +106,7 @@ $(document).ready(function () {
         var yearIndex = yearsContainer.find('.year-card').length; //Fungsi: Menghitung jumlah elemen dengan kelas year-card di dalam yearsContainer.
 
         let newYearCard = '<div class="card year-card mb-3">\n' +
-            '<h5 class="card-header d-flex justify-content-between align-items-center">\n' +
-            '    Year\n' +
-            '    <div class="ms-auto">\n' +
-            '        <button class="btn btn-outline-success ms-auto btn-add-year" type="button">\n' +
-            '            New Year Majors\n' +
-            '        </button>\n' +
-            '        <button class="btn btn-outline-danger ms-auto btn-delete-year" type="button">\n' +
-            '            Delete Year Majors\n' +
-            '        </button>\n' +
-            '    </div>\n' +
-            '</h5>\n' +
+            '    <h5 class="card-header">Year</h5>\n' +
             '    <div class="card-body">\n' +
             '        <div class="mb-3">\n' +
             '            <label for="id_' + majorIndex + '_years_' + yearIndex + '" class="form-label">Year</label>\n' +
@@ -182,17 +115,12 @@ $(document).ready(function () {
             '    </div>\n' +
             '    <div class="container-fluid mahasiswa-container">\n' +
             '        <div class="card card-students mb-3">\n' +
-            '<h5 class="card-header d-flex justify-content-between align-items-center">\n' +
-            '    Students\n' +
-            '    <div class="ms-auto">\n' +
-            '        <button class="btn btn-outline-success ms-auto btn-students" type="button">\n' +
-            '            New Students\n' +
-            '        </button>\n' +
-            '        <button class="btn btn-outline-danger ms-auto btn-delete-students" type="button">\n' +
-            '            Delete Students\n' +
-            '        </button>\n' +
-            '    </div>\n' +
-            '</h5>\n' +
+            '            <h5 class="card-header d-flex justify-content-between align-items-center">\n' +
+            '                Students\n' +
+            '                <button class="btn btn-outline-dark ms-auto btn-students" type="button">\n' +
+            '                    New Students\n' +
+            '                </button>\n' +
+            '            </h5>\n' +
             '            <div class="card-body">\n' +
             '                <div class="mb-3">\n' +
             '                    <label for="id_' + majorIndex + '_years_' + yearIndex + '_nim_0" class="form-label">NIM</label>\n' +
@@ -204,20 +132,12 @@ $(document).ready(function () {
             '                </div>\n' +
             '            </div>\n' +
             '        <div class="course-container container-fluid">\n' +
-            '<h5 class="d-flex justify-content-between align-items-center">\n' +
-            '    Course\n' +
-            '    <div class="ms-auto">\n' +
-            '        <button class="btn btn-outline-success ms-auto btn-add-course" type="button">\n' +
-            '            New Course\n' +
-            '        </button>\n' +
-            '        <button class="btn btn-outline-danger ms-auto btn-delete-course-tbl" type="button">\n' +
-            '            Delete Course\n' +
-            '        </button>\n' +
-            '<button class="btn btn-outline-danger ms-auto btn-delete-course-tbl" type="button">\n' +
-            '    Delete Course Table\n' +
-            '</button>\n' +
-            '    </div>\n' +
-            '</h5>' +
+            '            <h5 class="d-flex justify-content-between align-items-center">\n' +
+            '                Course\n' +
+            '                <button class="btn btn-outline-dark ms-auto btn-add-course" type="button">\n' +
+            '                    New Course\n' +
+            '                </button>\n' +
+            '            </h5>\n' +
             '            <table class="table table-striped table-hover table-bordered">\n' +
             '                <thead>\n' +
             '                    <tr>\n' +
@@ -226,7 +146,6 @@ $(document).ready(function () {
             '                        <th>Name</th>\n' +
             '                        <th>Dosen</th>\n' +
             '                        <th>Nilai</th>\n' +
-            '                        <th>Action</th>\n' +
             '                    </tr>\n' +
             '                </thead>\n' +
             '                <tbody class="course-body">\n' +
@@ -244,11 +163,6 @@ $(document).ready(function () {
             '                        <td>\n' +
             '                            <input type="text" class="form-control" name="jurusanModels[' + majorIndex + '].studentCountModels[' + yearIndex + '].mahasiswa[0].mataKuliah[0].nilai">\n' +
             '                        </td>\n' +
-            '<td>\n' +
-            '    <a class="btn btn-outline-danger btn-delete-course">\n' +
-            '        <i class="bi bi-trash3-fill"></i>&nbsp;Delete\n' +
-            '    </a>\n' +
-            '</td>\n' +
             '                    </tr>\n' +
             '                </tbody>\n' +
             '            </table>\n' +
@@ -271,17 +185,7 @@ $(document).ready(function () {
         var studentIndex = studentsContainer.find('.card-students').length; //Fungsi: Menghitung jumlah elemen dengan kelas card-students di dalam studentsContainer.
 
         let newStudentCard = '<div class="card card-students mb-3">\n' +
-            '<h5 class="card-header d-flex justify-content-between align-items-center">\n' +
-            '    Students\n' +
-            '    <div class="ms-auto">\n' +
-            '        <button class="btn btn-outline-success ms-auto btn-students" type="button">\n' +
-            '            New Students\n' +
-            '        </button>\n' +
-            '        <button class="btn btn-outline-danger ms-auto btn-delete-students" type="button">\n' +
-            '            Delete Students\n' +
-            '        </button>\n' +
-            '    </div>\n' +
-            '</h5>\n' +
+            '    <h5 class="card-header">Students</h5>\n' +
             '    <div class="card-body">\n' +
             '        <div class="mb-3">\n' +
             '            <label for="id_' + majorIndex + '_years_' + yearIndex + '_nim_' + studentIndex + '" class="form-label">NIM</label>\n' +
@@ -293,20 +197,12 @@ $(document).ready(function () {
             '        </div>\n' +
             '    </div>\n' +
             '    <div class="course-container container-fluid">\n' +
-            '<h5 class="d-flex justify-content-between align-items-center">\n' +
-            '    Course\n' +
-            '    <div class="ms-auto">\n' +
-            '        <button class="btn btn-outline-success ms-auto btn-add-course" type="button">\n' +
-            '            New Course\n' +
-            '        </button>\n' +
-            '        <button class="btn btn-outline-danger ms-auto btn-delete-course-tbl" type="button">\n' +
-            '            Delete Course\n' +
-            '        </button>\n' +
-            '<button class="btn btn-outline-danger ms-auto btn-delete-course-tbl" type="button">\n' +
-            '    Delete Course Table\n' +
-            '</button>\n' +
-            '    </div>\n' +
-            '</h5>' +
+            '        <h5 class="d-flex justify-content-between align-items-center">\n' +
+            '            Course\n' +
+            '            <button class="btn btn-outline-dark ms-auto btn-add-course" type="button">\n' +
+            '                New Course\n' +
+            '            </button>\n' +
+            '        </h5>\n' +
             '        <table class="table table-striped table-hover table-bordered">\n' +
             '            <thead>\n' +
             '                <tr>\n' +
@@ -315,7 +211,6 @@ $(document).ready(function () {
             '                    <th>Name</th>\n' +
             '                    <th>Dosen</th>\n' +
             '                    <th>Nilai</th>\n' +
-            '                    <th>Action</th>\n' +
             '                </tr>\n' +
             '            </thead>\n' +
             '            <tbody class="course-body">\n' +
@@ -333,11 +228,6 @@ $(document).ready(function () {
             '                    <td>\n' +
             '                        <input type="text" class="form-control" name="jurusanModels[' + majorIndex + '].studentCountModels[' + yearIndex + '].mahasiswa[' + studentIndex + '].mataKuliah[0].nilai">\n' +
             '                    </td>\n' +
-            '<td>\n' +
-            '    <a class="btn btn-outline-danger btn-delete-course">\n' +
-            '        <i class="bi bi-trash3-fill"></i>&nbsp;Delete\n' +
-            '    </a>\n' +
-            '</td>\n' +
             '                </tr>\n' +
             '            </tbody>\n' +
             '        </table>\n' +
@@ -365,11 +255,6 @@ $(document).ready(function () {
             '    <td><input type="text" class="form-control" name="jurusanModels[' + majorIndex + '].studentCountModels[' + yearIndex + '].mahasiswa[' + studentIndex + '].mataKuliah[' + courseIndex + '].name"></td>\n' +
             '    <td><input type="text" class="form-control" name="jurusanModels[' + majorIndex + '].studentCountModels[' + yearIndex + '].mahasiswa[' + studentIndex + '].mataKuliah[' + courseIndex + '].dosenName"></td>\n' +
             '    <td><input type="text" class="form-control" name="jurusanModels[' + majorIndex + '].studentCountModels[' + yearIndex + '].mahasiswa[' + studentIndex + '].mataKuliah[' + courseIndex + '].nilai"></td>\n' +
-            '<td>\n' +
-            '    <a class="btn btn-outline-danger btn-delete-course">\n' +
-            '        <i class="bi bi-trash3-fill"></i>&nbsp;Delete\n' +
-            '    </a>\n' +
-            '</td>\n' +
             '</tr>';
 
         courseContainer.find('.course-body').append(newCourseRow);

@@ -9,7 +9,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 public class DusunModel {
     private String id;
     private String name;
@@ -41,5 +40,9 @@ public class DusunModel {
         this.name = name;
         this.dusunLeader = dusunLeader;
         this.rwModels = rwModels;
+    }
+
+    public DusunModel() {
+        this.id = UUID.randomUUID().toString();
     }
 }

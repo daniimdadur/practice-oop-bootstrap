@@ -1,86 +1,26 @@
 package org.security.project.detail.siswa.kelurahan.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.security.project.detail.siswa.kelurahan.model.*;
+import org.security.project.detail.siswa.kelurahan.service.KelurahanService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/desa")
 public class DesaController {
-    public static List<KelurahanModel> kelurahanList;
-
-    public DesaController() {
-        kelurahanList = new ArrayList<>();
-
-        KelurahanModel sukahurip = new KelurahanModel("59febb99-0309-4ad5-8ea2-5e9654e87079", "Sukahurip", "Pamarican");
-        KelurahanModel pamarican = new KelurahanModel("59febb99-0309-4ad5-8ea2-5e9654e87080", "Pamarican", "Pamarican");
-        KelurahanModel sukajadi = new KelurahanModel("59febb99-0309-4ad5-8ea2-5e9654e87081", "Sukajadi", "Pamarican");
-
-        //warga list
-        List<PeopleModel> wargaList = new ArrayList<>();
-
-        //rt list
-        List<RTModel> rtList = new ArrayList<>();
-
-        //rw list
-        List<RWModel> rwList = new ArrayList<>();
-
-        //dusun list
-        List<DusunModel> dusunList = new ArrayList<>();
-
-        //dusun
-        DusunModel ciparakan = new DusunModel("59febb99-0309-4ad5-8ea2-5e9654e87073", "Ciparakan", "Nurdin", sukahurip);
-        ciparakan.setRwModels(rwList);
-        dusunList.add(ciparakan);
-        DusunModel citundun = new DusunModel("59febb99-0309-4ad5-8ea2-5e9654e87074", "Citundun", "Jaka", sukahurip);
-        dusunList.add(citundun);
-        DusunModel cigaleh = new DusunModel("59febb99-0309-4ad5-8ea2-5e9654e87075", "Cigaleh", "Dimas", sukahurip);
-        dusunList.add(cigaleh);
-
-        //rw
-        RWModel tori = new RWModel("59febb99-0309-4ad5-8ea2-5e9654e87076", "RW 01", "Tori", sukahurip, ciparakan);
-        tori.setRtModels(rtList);
-        rwList.add(tori);
-        RWModel joyo = new RWModel("59febb99-0309-4ad5-8ea2-5e9654e87077", "RW 02", "Joyo", sukahurip, ciparakan);
-        rwList.add(joyo);
-        RWModel ade = new RWModel("59febb99-0309-4ad5-8ea2-5e9654e87078", "RW 03", "Ade", sukahurip, ciparakan);
-        rwList.add(ade);
-
-        //rt
-        RTModel ridwan = new RTModel("462af9d5-6087-4d56-9101-af1cca5d2a28", "RT 01", "Ridwan");
-        rtList.add(ridwan);
-        RTModel hamzah = new RTModel("59febb99-0309-4ad5-8ea2-5e9654e87071", "RT 02", "Hamzah");
-        rtList.add(hamzah);
-        RTModel ocen = new RTModel("618b3f1c-b92d-4cb1-bb06-c502b0db37b4", "RT 03", "Ocen");
-        ocen.setPeopleModel(wargaList);
-        rtList.add(ocen);
-
-        //warga list
-        PeopleModel malik = new PeopleModel("618b3f1c-b92d-4cb1-bb06-c502b0db37b5", 111, "Malik", "Pria", "30");
-        wargaList.add(malik);
-        PeopleModel jaki = new PeopleModel("59febb99-0309-4ad5-8ea2-5e9654e87072", 222, "Jaki", "Pria", "40");
-        wargaList.add(jaki);
-        PeopleModel afik = new PeopleModel("462af9d5-6087-4d56-9101-af1cca5d2a29", 333, "Afik", "Wanita", "50");
-        wargaList.add(afik);
-
-        sukahurip.setDusunModels(dusunList);
-
-        //generate data
-        kelurahanList.add(sukahurip);
-        kelurahanList.add(pamarican);
-        kelurahanList.add(sukajadi);
-    }
+    private final KelurahanService kelurahanService;
 
     @GetMapping()
     public ModelAndView get() {
         ModelAndView view = new ModelAndView("pages/kelurahan/dashboard/index");
-        view.addObject("data", kelurahanList);
+        List<KelurahanModel> kelurahan = kelurahanService.get();
+        view.addObject("data", kelurahan);
         return view;
     }
 
@@ -89,7 +29,7 @@ public class DesaController {
         ModelAndView view = new ModelAndView("pages/kelurahan/detail/desa");
         view.addObject("id", id);
 
-        Optional<KelurahanModel> kelurahan = kelurahanList.stream().filter(x -> x.getId().equals(id)).findFirst();
+        Optional<KelurahanModel> kelurahan = kelurahanService.getById(id);
         if (kelurahan.isPresent()) {
             view.addObject("kelurahan", kelurahan.get());
             return view;
@@ -105,7 +45,7 @@ public class DesaController {
         view.addObject("id", id);
         view.addObject("dusunId", dusunId);
 
-        Optional<KelurahanModel> kelurahan = kelurahanList.stream().filter(x -> x.getId().equals(id)).findFirst();
+        Optional<KelurahanModel> kelurahan = kelurahanService.getById(id);
         if (kelurahan.isPresent()) {
             DusunModel dusun = kelurahan.get().getDusunModels().stream().filter(x -> x.getId().equals(dusunId)).findFirst().get();
             view.addObject("dusun", dusun);
@@ -125,7 +65,7 @@ public class DesaController {
         view.addObject("dusunId", dusunId);
         view.addObject("rwId", rwId);
 
-        Optional<KelurahanModel> kelurahan = kelurahanList.stream().filter(x -> x.getId().equals(desaId)).findFirst();
+        Optional<KelurahanModel> kelurahan = kelurahanService.getById(desaId);
         if (kelurahan.isPresent()) {
             DusunModel dusun = kelurahan.get().getDusunModels().stream().filter(x -> x.getId().equals(dusunId)).findFirst().get();
             RWModel rw = dusun.getRwModels().stream().filter(x -> x.getId().equals(rwId)).findFirst().get();
@@ -149,7 +89,7 @@ public class DesaController {
         view.addObject("rwId", rwId);
         view.addObject("rtId", rtId);
 
-        Optional<KelurahanModel> kelurahan = kelurahanList.stream().filter(x -> x.getId().equals(desaId)).findFirst();
+        Optional<KelurahanModel> kelurahan = kelurahanService.getById(desaId);
         if (kelurahan.isPresent()) {
             DusunModel dusun = kelurahan.get().getDusunModels().stream().filter(x -> x.getId().equals(dusunId)).findFirst().get();
             RWModel rw = dusun.getRwModels().stream().filter(x -> x.getId().equals(rwId)).findFirst().get();
@@ -168,29 +108,7 @@ public class DesaController {
     public ModelAndView add() {
         ModelAndView view = new ModelAndView("pages/kelurahan/add/list");
 
-        KelurahanModel kelurahan = new KelurahanModel();
-
-        List<DusunModel> dusunList = new ArrayList<>();
-
-        //warga
-        ArrayList<PeopleModel> warga1 = new ArrayList<>();
-        warga1.add(new PeopleModel( 0, "", "", ""));
-        warga1.add(new PeopleModel( 0, "", "", ""));
-
-        //rt
-        ArrayList<RTModel> rt1 = new ArrayList<>();
-        rt1.add(new RTModel( "", "", warga1));
-
-        //rw
-        ArrayList<RWModel> rw1 = new ArrayList<>();
-        rw1.add(new RWModel( "", "", rt1));
-
-        //dusun
-        DusunModel dusun1 = new DusunModel( "", "", rw1);
-        dusunList.add(dusun1);
-
-        //add to kelurahan
-        kelurahan.setDusunModels(dusunList);
+        KelurahanModel kelurahan = kelurahanService.prepareKelurahanData();
 
         view.addObject("desa", kelurahan);
         return view;
@@ -198,8 +116,7 @@ public class DesaController {
 
     @PostMapping("/save")
     public ModelAndView save(@ModelAttribute KelurahanModel kelurahan) {
-        generateId(kelurahan);
-        kelurahanList.add(kelurahan);
+        kelurahanService.save(kelurahan);
         return new ModelAndView("redirect:/desa");
     }
 
@@ -207,66 +124,60 @@ public class DesaController {
     public ModelAndView add(@PathVariable("id") String id) {
         ModelAndView view = new ModelAndView("pages/kelurahan/edit/list");
 
-        for (KelurahanModel kelurahan : kelurahanList) {
-            if (kelurahan.getId().equals(id)) {
-                view.addObject("desa", kelurahan);
-                return view;
-            }
+        Optional<KelurahanModel> kelurahan = this.kelurahanService.getById(id);
+        if (kelurahan.isPresent()) {
+            view.addObject("desa", kelurahan.get());
+            return view;
         }
         return new ModelAndView("redirect:/desa");
     }
 
-    @PostMapping("/update/{id}")
-    public ModelAndView update(@PathVariable("id") String id, @ModelAttribute("desa") KelurahanModel kelurahan) {
-        for (int i = 0; i < kelurahanList.size(); i++) {
-            if (kelurahanList.get(i).getId().equals(id)) {
-                kelurahanList.set(i, kelurahan);
-                return new ModelAndView("redirect:/desa");
-            }
-        }
+    @PostMapping("/update")
+    public ModelAndView update(@ModelAttribute("desa") KelurahanModel kelurahan) {
+        this.kelurahanService.update(kelurahan, kelurahan.getId());
         return new ModelAndView("redirect:/desa");
     }
-
-    @GetMapping("/delete/{id}")
-    public ModelAndView delete(@PathVariable("id") String id) {
-        ModelAndView view = new ModelAndView("pages/kelurahan/delete/list");
-
-        for (KelurahanModel kelurahan : kelurahanList) {
-            if (kelurahan.getId().equals(id)) {
-                view.addObject("desa", kelurahan);
-                return view;
-            }
-        }
-        return new ModelAndView("redirect:/desa");
-    }
-
-    @PostMapping("/remove/{id}")
-    public ModelAndView remove(@PathVariable("id") String id, @ModelAttribute KelurahanModel kelurahan) {
-        for (int i = 0; i < kelurahanList.size(); i++) {
-            if (kelurahanList.get(i).getId().equals(id)) {
-                kelurahanList.remove(i);
-                return new ModelAndView("redirect:/desa");
-            }
-        }
-        return new ModelAndView("redirect:/desa");
-    }
-
-    private void generateId(KelurahanModel kelurahan) {
-        // Generate ID for KelurahanModel
-        kelurahan.setId(UUID.randomUUID().toString());
-
-        // Generate IDs for all nested entities
-        for (DusunModel dusun : kelurahan.getDusunModels()) {
-            dusun.setId(UUID.randomUUID().toString());
-            for (RWModel rw : dusun.getRwModels()) {
-                rw.setId(UUID.randomUUID().toString());
-                for (RTModel rt : rw.getRtModels()) {
-                    rt.setId(UUID.randomUUID().toString());
-                    for (PeopleModel people : rt.getPeopleModel()) {
-                        people.setId(UUID.randomUUID().toString());
-                    }
-                }
-            }
-        }
-    }
+//
+//    @GetMapping("/delete/{id}")
+//    public ModelAndView delete(@PathVariable("id") String id) {
+//        ModelAndView view = new ModelAndView("pages/kelurahan/delete/list");
+//
+//        for (KelurahanModel kelurahan : kelurahanService) {
+//            if (kelurahan.getId().equals(id)) {
+//                view.addObject("desa", kelurahan);
+//                return view;
+//            }
+//        }
+//        return new ModelAndView("redirect:/desa");
+//    }
+//
+//    @PostMapping("/remove/{id}")
+//    public ModelAndView remove(@PathVariable("id") String id, @ModelAttribute KelurahanModel kelurahan) {
+//        for (int i = 0; i < kelurahanService.size(); i++) {
+//            if (kelurahanService.get(i).getId().equals(id)) {
+//                kelurahanService.remove(i);
+//                return new ModelAndView("redirect:/desa");
+//            }
+//        }
+//        return new ModelAndView("redirect:/desa");
+//    }
+//
+//    private void generateId(KelurahanModel kelurahan) {
+//        // Generate ID for KelurahanModel
+//        kelurahan.setId(UUID.randomUUID().toString());
+//
+//        // Generate IDs for all nested entities
+//        for (DusunModel dusun : kelurahan.getDusunModels()) {
+//            dusun.setId(UUID.randomUUID().toString());
+//            for (RWModel rw : dusun.getRwModels()) {
+//                rw.setId(UUID.randomUUID().toString());
+//                for (RTModel rt : rw.getRtModels()) {
+//                    rt.setId(UUID.randomUUID().toString());
+//                    for (PeopleModel people : rt.getPeopleModel()) {
+//                        people.setId(UUID.randomUUID().toString());
+//                    }
+//                }
+//            }
+//        }
+//    }
 }

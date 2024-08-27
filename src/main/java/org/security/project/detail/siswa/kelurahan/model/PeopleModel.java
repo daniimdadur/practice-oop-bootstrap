@@ -7,7 +7,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 public class PeopleModel {
     private String id;
     private Integer nik;
@@ -27,11 +26,14 @@ public class PeopleModel {
         this.age = age;
     }
 
-
     public PeopleModel(Integer nik, String nama, String gender, String age) {
         this.nik = nik;
         this.nama = nama;
         this.gender = gender;
         this.age = age;
+    }
+
+    public PeopleModel() {
+        this.id = UUID.randomUUID().toString();
     }
 }
