@@ -2,28 +2,60 @@ $(document).ready(function () {
     //event delegation delete majors
     $('#majors-container').on('click', '.btn-delete', function () {
         $(this).closest('.major-card').remove();
-    });
-    //event delegation delete year
-    $('#majors-container').on('click', '.btn-delete-year', function () {
-        $(this).closest('.year-card').remove();
-    });
-    //event delegation delete students
-    $('#majors-container').on('click', '.btn-delete-students', function () {
-        $(this).closest('.card-students').remove();
-    });
-    //event delegation delete course row
-    $('#majors-container').on('click', '.btn-delete-course', function () {
-        $(this).closest('.course-row').remove();
-        var $tbody = $(this).parent().parent().parent();
-        console.log($tbody.html())
-        /*
-        $(this).parent().parent().parent().find('.course-row').each(function (index, tr) {
-            console.log("tr " + index);
+        //looping index after delete
+        $('#majors-container .major-card').each(function (index) {
+            $(this).find('[name]').each(function () {
+                let nameAttr = $(this).attr('name');
+                nameAttr = nameAttr.replace(/jurusanModels\[\d+\]/, `jurusanModels[${index}]`);
+                $(this).attr('name', nameAttr);
+            });
         });
-        */
+    });
+
+    //event delegation delete year
+    $('.years-container').on('click', '.btn-delete-year', function () {
+        $(this).closest('.year-card').remove();
+        //looping index after delete
+        $('.years-container .year-card').each(function (index) {
+            $(this).find('[name]').each(function () {
+                let nameAttr = $(this).attr('name');
+                nameAttr = nameAttr.replace(/studentCountModels\[\d+\]/, `studentCountModels[${index}]`);
+                $(this).attr('name', nameAttr);
+            });
+        });
+    });
+
+    //event delegation delete students
+    $('.mahasiswa-container').on('click', '.btn-delete-students', function () {
+        $(this).closest('.card-students').remove();
+        //looping index after delete
+        $('.mahasiswa-container .card-students').each(function (index) {
+            $(this).find('[name]').each(function () {
+                let nameAttr = $(this).attr('name');
+                nameAttr = nameAttr.replace(/mahasiswa\[\d+\]/, `mahasiswa[${index}]`);
+                $(this).attr('name', nameAttr);
+            });
+        });
+    });
+
+    //event delegation delete course row
+    $('.course-body').on('click', '.btn-delete-course', function () {
+        $(this).closest('.course-row').remove();
+
+        $('.course-body .course-row').each(function (index) {
+            $(this).find('th[scope="row"]').text(index + 1);
+
+            $(this).find('[name]').each(function () {
+                let nameAttr = $(this).attr('name');
+
+                nameAttr = nameAttr.replace(/mataKuliah\[\d+\]/, `mataKuliah[${index}]`);
+
+                $(this).attr('name', nameAttr);
+            })
+        });
     });
     //event delegation delete table
-    $('#majors-container').on('click', '.btn-delete-course-tbl', function () {
+    $('.course-container').on('click', '.btn-delete-course-tbl', function () {
         $(this).closest('.course-container').remove();
     });
 
@@ -95,8 +127,7 @@ $(document).ready(function () {
             '                            <label for="id_' + majorIndex + '_years_0_name_0" class="form-label">Mahasiswa Name</label>\n' +
             '                            <input type="text" id="id_' + majorIndex + '_years_0_name_0" class="form-control" name="jurusanModels[' + majorIndex + '].studentCountModels[0].mahasiswa[0].name">\n' +
             '                        </div>\n' +
-            '                    </div>\n' +
-            '                    <div class="course-container container-fluid">\n' +
+            '                    <div class="course-container">\n' +
             '<h5 class="d-flex justify-content-between align-items-center">\n' +
             '    Course\n' +
             '    <div class="ms-auto">\n' +
@@ -145,6 +176,7 @@ $(document).ready(function () {
             '                                </tr>\n' +
             '                            </tbody>\n' +
             '                        </table>\n' +
+            '                    </div>\n' +
             '                    </div>\n' +
             '                </div>\n' +
             '            </div>\n' +
@@ -202,8 +234,7 @@ $(document).ready(function () {
             '                    <label for="id_' + majorIndex + '_years_' + yearIndex + '_name_0" class="form-label">Mahasiswa Name</label>\n' +
             '                    <input type="text" id="id_' + majorIndex + '_years_' + yearIndex + '_name_0" class="form-control" name="jurusanModels[' + majorIndex + '].studentCountModels[' + yearIndex + '].mahasiswa[0].name">\n' +
             '                </div>\n' +
-            '            </div>\n' +
-            '        <div class="course-container container-fluid">\n' +
+            '        <div class="course-container">\n' +
             '<h5 class="d-flex justify-content-between align-items-center">\n' +
             '    Course\n' +
             '    <div class="ms-auto">\n' +
@@ -253,6 +284,7 @@ $(document).ready(function () {
             '                </tbody>\n' +
             '            </table>\n' +
             '        </div>\n' +
+            '            </div>\n' +
             '        </div>\n' +
             '    </div>\n' +
             '</div>';
@@ -291,8 +323,7 @@ $(document).ready(function () {
             '            <label for="id_' + majorIndex + '_years_' + yearIndex + '_name_' + studentIndex + '" class="form-label">Mahasiswa Name</label>\n' +
             '            <input type="text" id="id_' + majorIndex + '_years_' + yearIndex + '_name_' + studentIndex + '" class="form-control" name="jurusanModels[' + majorIndex + '].studentCountModels[' + yearIndex + '].mahasiswa[' + studentIndex + '].name">\n' +
             '        </div>\n' +
-            '    </div>\n' +
-            '    <div class="course-container container-fluid">\n' +
+            '    <div class="course-container">\n' +
             '<h5 class="d-flex justify-content-between align-items-center">\n' +
             '    Course\n' +
             '    <div class="ms-auto">\n' +
@@ -341,6 +372,7 @@ $(document).ready(function () {
             '                </tr>\n' +
             '            </tbody>\n' +
             '        </table>\n' +
+            '    </div>\n' +
             '    </div>\n' +
             '</div>';
 

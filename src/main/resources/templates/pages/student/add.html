@@ -9,10 +9,6 @@
     <h3>Student Detail</h3>
     <form th:action="@{~/student/save}" method="post">
         <div class="mb-3">
-            <label for="id" class="form-label">#</label>
-            <input type="text" class="form-control" id="id" name="id" th:value="${student.id}">
-        </div>
-        <div class="mb-3">
             <label for="nis" class="form-label">NIS</label>
             <input type="text" class="form-control" id="nis" name="nis" th:value="${student.nis}">
         </div>
@@ -35,7 +31,6 @@
                 <h5 class="card-header" th:text="${history.schoolName}"></h5>
                 <div class="card-body">
                     <div class="col-12 mb-3">
-                        <input type="hidden" th:name="|schoolHistory[${hisLup.index}].id|" th:value="${hisLup.index + 1}">
                         <div class="mb-3">
                             <label th:for="|id_${hisLup.index}_schoolName|" class="form-label">School Name</label>
                             <input type="text" class="form-control" th:id="|id_${hisLup.index}_schoolName|" th:name="|schoolHistory[${hisLup.index}].schoolName|">
@@ -63,7 +58,6 @@
                         <tr th:each="class, classLup : ${history.schoolClasses}">
                             <th scope="row" th:text="${classLup.index + 1}"></th>
                             <td>
-                                <input type="hidden" th:name="|schoolHistory[${hisLup.index}].schoolClasses[${classLup.index}].id|" th:value="${classLup.index + 1}">
                                 <input type="text" class="form-control" th:name="|schoolHistory[${hisLup.index}].schoolClasses[${classLup.index}].schoolClass|" th:value="${class.schoolClass}">
                             </td>
                             <td>

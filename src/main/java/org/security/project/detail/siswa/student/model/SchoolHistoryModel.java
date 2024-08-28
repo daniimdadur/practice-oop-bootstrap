@@ -6,21 +6,31 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class SchoolHistoryModel {
-    private Integer id;
+    private String id;
     private String schoolName;
     private String schoolAddress;
     private String schoolCity;
     private List<SchoolClassModel> schoolClasses = new ArrayList<>();
 
-    public SchoolHistoryModel(Integer id, String schoolName, String schoolAddress, String schoolCity) {
+    public SchoolHistoryModel(String id, String schoolName, String schoolAddress, String schoolCity) {
         this.id = id;
         this.schoolName = schoolName;
         this.schoolAddress = schoolAddress;
         this.schoolCity = schoolCity;
+    }
+
+    public SchoolHistoryModel(String schoolName, String schoolAddress, String schoolCity) {
+        this.schoolName = schoolName;
+        this.schoolAddress = schoolAddress;
+        this.schoolCity = schoolCity;
+    }
+
+    public SchoolHistoryModel() {
+        this.id = UUID.randomUUID().toString();
     }
 }

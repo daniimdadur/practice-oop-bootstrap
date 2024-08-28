@@ -3,19 +3,69 @@ $(document).ready(function () {
     //remove dusun
     $('#dusun-container').on('click', '.btn-delete-dusun', function () {
         $(this).closest('.dusun-card').remove();
+
+        $('#dusun-container .dusun-card').each(function (index) {
+            $(this).find('[name]').each(function () {
+                let nameAttr = $(this).attr('name');
+                nameAttr = nameAttr.replace(/dusunModels\[\d+\]/, `dusunModels[${index}]`);
+                $(this).attr('name', nameAttr);
+            });
+        });
     });
     //remove rw
-    $('#dusun-container').on('click', '.btn-delete-rw', function () {
+    $('.rw-container').on('click', '.btn-delete-rw', function () {
         $(this).closest('.rw-container').remove();
+        //update index after delete
+        $('.rw-container .rw-card').each(function (index) {
+            $(this).find('[name]').each(function () {
+                let nameAttr = $(this).attr('name');
+                nameAttr = nameAttr.replace(/rwModels\[\d+\]/, `rwModels[${index}]`);
+                $(this).attr('name', nameAttr);
+            });
+        });
     });
     //remove rt
-    $('#dusun-container').on('click', '.btn-delete-rt', function () {
+    $('.rt-container').on('click', '.btn-delete-rt', function () {
         $(this).closest('.rt-container').remove();
+        //update index after delete
+        $('.rt-container .rt-card').each(function (index) {
+            $(this).find('[name]').each(function () {
+                let nameAttr = $(this).attr('name');
+                nameAttr = nameAttr.replace(/rtModels\[\d+\]/, `rtModels[${index}]`);
+                $(this).attr('name', nameAttr);
+            });
+        });
+
     });
     //remove warga table
-    $('#dusun-container').on('click', '.btn-delete-list-warga', function () {
+    $('.warga-container').on('click', '.btn-delete-list-warga', function () {
         $(this).closest('.warga-container').remove();
     });
+    // Menangani klik pada tombol delete
+    $('.warga-body').on('click', '.btn-delete-warga', function () {
+        // Hapus baris yang berisi tombol delete yang diklik
+        $(this).closest('.warga-row').remove();
+
+        // Perbarui indeks untuk baris yang tersisa
+        $('.warga-body .warga-row').each(function(index) {
+            // Perbarui nomor urut pada kolom pertama
+            $(this).find('th[scope="row"]').text(index + 1);
+
+            // Perbarui atribut name untuk input dan select dalam baris ini
+            $(this).find('[name]').each(function() {
+                // Ambil nilai atribut name
+                let nameAttr = $(this).attr('name');
+
+                // Ganti indeks lama dengan indeks baru
+                // Misalnya, mengganti 'peopleModel[0]' dengan 'peopleModel[1]'
+                nameAttr = nameAttr.replace(/peopleModel\[\d+\]/, `peopleModel[${index}]`);
+
+                // Setel ulang atribut name dengan nilai yang telah diperbarui
+                $(this).attr('name', nameAttr);
+            });
+        });
+    });
+
 
     //add dusun
     $('#dusun-container').on('click', '.btn-add-dusun', function () {

@@ -137,6 +137,24 @@ public class DesaController {
         this.kelurahanService.update(kelurahan, kelurahan.getId());
         return new ModelAndView("redirect:/desa");
     }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") String id) {
+        ModelAndView view = new ModelAndView("pages/kelurahan/delete/list");
+
+        Optional<KelurahanModel> kelurahan = this.kelurahanService.getById(id);
+        if (kelurahan.isPresent()) {
+            view.addObject("desa", kelurahan.get());
+            return view;
+        }
+        return new ModelAndView("redirect:/desa");
+    }
+
+    @PostMapping("/remove")
+    public ModelAndView remove(@ModelAttribute KelurahanModel kelurahan){
+        this.kelurahanService.remove(kelurahan.getId());
+        return new ModelAndView("redirect:/desa");
+    }
 //
 //    @GetMapping("/delete/{id}")
 //    public ModelAndView delete(@PathVariable("id") String id) {
