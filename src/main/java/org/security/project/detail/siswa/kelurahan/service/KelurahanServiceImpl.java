@@ -13,6 +13,7 @@ import java.util.Optional;
 public class KelurahanServiceImpl implements KelurahanService{
     public static List<KelurahanModel> kelurahanList;
 
+
     private KelurahanServiceImpl() {
         kelurahanList = new ArrayList<>();
 
@@ -33,21 +34,21 @@ public class KelurahanServiceImpl implements KelurahanService{
         List<DusunModel> dusunList = new ArrayList<>();
 
         //dusun
-        DusunModel ciparakan = new DusunModel("59febb99-0309-4ad5-8ea2-5e9654e87073", "Ciparakan", "Nurdin", sukahurip);
+        DusunModel ciparakan = new DusunModel("59febb99-0309-4ad5-8ea2-5e9654e87073", "Ciparakan", "Nurdin");
         ciparakan.setRwModels(rwList);
         dusunList.add(ciparakan);
-        DusunModel citundun = new DusunModel("59febb99-0309-4ad5-8ea2-5e9654e87074", "Citundun", "Jaka", sukahurip);
+        DusunModel citundun = new DusunModel("59febb99-0309-4ad5-8ea2-5e9654e87074", "Citundun", "Jaka");
         dusunList.add(citundun);
-        DusunModel cigaleh = new DusunModel("59febb99-0309-4ad5-8ea2-5e9654e87075", "Cigaleh", "Dimas", sukahurip);
+        DusunModel cigaleh = new DusunModel("59febb99-0309-4ad5-8ea2-5e9654e87075", "Cigaleh", "Dimas");
         dusunList.add(cigaleh);
 
         //rw
-        RWModel tori = new RWModel("59febb99-0309-4ad5-8ea2-5e9654e87076", "RW 01", "Tori", sukahurip, ciparakan);
+        RWModel tori = new RWModel("59febb99-0309-4ad5-8ea2-5e9654e87076", "RW 01", "Tori");
         tori.setRtModels(rtList);
         rwList.add(tori);
-        RWModel joyo = new RWModel("59febb99-0309-4ad5-8ea2-5e9654e87077", "RW 02", "Joyo", sukahurip, ciparakan);
+        RWModel joyo = new RWModel("59febb99-0309-4ad5-8ea2-5e9654e87077", "RW 02", "Joyo");
         rwList.add(joyo);
-        RWModel ade = new RWModel("59febb99-0309-4ad5-8ea2-5e9654e87078", "RW 03", "Ade", sukahurip, ciparakan);
+        RWModel ade = new RWModel("59febb99-0309-4ad5-8ea2-5e9654e87078", "RW 03", "Ade");
         rwList.add(ade);
 
         //rt

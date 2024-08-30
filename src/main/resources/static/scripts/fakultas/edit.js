@@ -13,50 +13,73 @@ $(document).ready(function () {
     });
 
     //event delegation delete year
-    $('.years-container').on('click', '.btn-delete-year', function () {
+    $('#majors-container').on('click', '.btn-delete-year', function () {
         $(this).closest('.year-card').remove();
         //looping index after delete
-        $('.years-container .year-card').each(function (index) {
-            $(this).find('[name]').each(function () {
-                let nameAttr = $(this).attr('name');
-                nameAttr = nameAttr.replace(/studentCountModels\[\d+\]/, `studentCountModels[${index}]`);
-                $(this).attr('name', nameAttr);
+        $('#majors-container .major-card').each(function (majorsIndex) {
+            $(this).find('.year-card').each(function (yearsIndex) {
+                $(this).find('[name]').each(function () {
+                    let nameAttr = $(this).attr('name');
+                    nameAttr = nameAttr.replace(/jurusanModels\[\d+\].studentCountModels\[\d+\]/, `jurusanModels[${majorsIndex}].studentCountModels[${yearsIndex}]`);
+                    $(this).attr('name', nameAttr);
+                });
             });
         });
     });
 
     //event delegation delete students
-    $('.mahasiswa-container').on('click', '.btn-delete-students', function () {
+    $('#majors-container').on('click', '.btn-delete-students', function () {
         $(this).closest('.card-students').remove();
         //looping index after delete
-        $('.mahasiswa-container .card-students').each(function (index) {
-            $(this).find('[name]').each(function () {
-                let nameAttr = $(this).attr('name');
-                nameAttr = nameAttr.replace(/mahasiswa\[\d+\]/, `mahasiswa[${index}]`);
-                $(this).attr('name', nameAttr);
+        $('#majors-container .major-card').each(function (majorsIndex) {
+            $(this).find('.year-card').each(function (yearsIndex) {
+                $(this).find('.card-students').each(function (studentsIndex) {
+                    $(this).find('[name]').each(function () {
+                        let nameAttr = $(this).attr('name');
+                        nameAttr = nameAttr.replace(/jurusanModels\[\d+\].studentCountModels\[\d+\].mahasiswa\[\d+\]/, `jurusanModels[${majorsIndex}].studentCountModels[${yearsIndex}].mahasiswa[${studentsIndex}]`);
+                        $(this).attr('name', nameAttr);
+                    });
+                });
             });
         });
     });
 
     //event delegation delete course row
-    $('.course-body').on('click', '.btn-delete-course', function () {
+    $('#majors-container').on('click', '.btn-delete-course', function () {
         $(this).closest('.course-row').remove();
 
-        $('.course-body .course-row').each(function (index) {
-            $(this).find('th[scope="row"]').text(index + 1);
-
-            $(this).find('[name]').each(function () {
-                let nameAttr = $(this).attr('name');
-
-                nameAttr = nameAttr.replace(/mataKuliah\[\d+\]/, `mataKuliah[${index}]`);
-
-                $(this).attr('name', nameAttr);
-            })
+        $('#majors-container .major-card').each(function (majorsIndex) {
+            $(this).find('.year-card').each(function (yearsIndex) {
+                $(this).find('.card-students').each(function (studentsIndex) {
+                    $(this).find('.course-body .course-row').each(function (courseIndex) {
+                        $(this).find('th[scope="row"]').text(courseIndex + 1);
+                        $(this).find('[name]').each(function () {
+                            let nameAttr = $(this).attr('name');
+                            nameAttr = nameAttr.replace(/jurusanModels\[\d+\].studentCountModels\[\d+\].mahasiswa\[\d+\].mataKuliah\[\d+\]/, `jurusanModels[${majorsIndex}].studentCountModels[${yearsIndex}].mahasiswa[${studentsIndex}].mataKuliah[${courseIndex}]`);
+                            $(this).attr('name', nameAttr);
+                        });
+                    });
+                });
+            });
         });
     });
     //event delegation delete table
-    $('.course-container').on('click', '.btn-delete-course-tbl', function () {
+    $('#majors-container').on('click', '.btn-delete-course-tbl', function () {
         $(this).closest('.course-container').remove();
+
+        $('#majors-container .major-card').each(function (majorsIndex) {
+            $(this).find('.year-card').each(function (yearsIndex) {
+                $(this).find('.card-students').each(function (studentsIndex) {
+                    $(this).find('.course-body').each(function (courseIndex) {
+                        $(this).find('[name]').each(function () {
+                            let nameAttr =  $(this).attr('name');
+                            nameAttr = nameAttr.replace(/jurusanModels\[\d+\].studentCountModels\[\d+\].mahasiswa\[\d+\].mataKuliah\[\d+\]/, `jurusanModels[${majorsIndex}].studentCountModels[${yearsIndex}].mahasiswa[${studentsIndex}].mataKuliah[${courseIndex}]`);
+                            $(this).attr('name', nameAttr);
+                        });
+                    });
+                });
+            });
+        });
     });
 
     // Event delegation untuk tombol tambah "Majors"

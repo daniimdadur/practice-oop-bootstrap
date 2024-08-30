@@ -1,6 +1,5 @@
 package org.security.project.detail.siswa.kelurahan.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import java.util.ArrayList;

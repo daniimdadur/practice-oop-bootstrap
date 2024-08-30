@@ -1,12 +1,10 @@
 package org.security.project.detail.siswa.kelurahan.controller;
 
 import org.security.project.detail.siswa.kelurahan.model.*;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RequestMapping("/")

@@ -7,7 +7,7 @@
 <body>
 <div class="container-xxl flex-grow-1 container-p-y" layout:fragment="content">
     <h4>#Student Detail</h4>
-    <form th:action="@{~/student/remove/{id}(id = ${student.id})}" method="post">
+    <form th:action="@{~/student/remove}" method="post">
         <div class="mb-3">
             <label for="id" class="form-label">#</label>
             <input type="text" class="form-control" id="id" name="id" th:value="${student.id}" readonly>

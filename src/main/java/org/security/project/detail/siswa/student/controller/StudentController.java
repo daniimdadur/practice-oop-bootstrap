@@ -15,7 +15,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("/student")
 public class StudentController {
-    private final List<StudentModel> studentList = new ArrayList<>();
     private final StudentService studentService;
 
     @GetMapping
@@ -53,50 +52,38 @@ public class StudentController {
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView edit(@PathVariable("id") Integer id) {
+    public ModelAndView edit(@PathVariable("id") String id) {
         ModelAndView view = new ModelAndView("pages/student/edit");
 
-        for (StudentModel student : this.studentList) {
-            if (student.getId().equals(id)) {
-                view.addObject("student", student);
-                return view;
-            }
+        Optional<StudentModel> student = studentService.getById(id);
+        if (student.isPresent()) {
+            view.addObject("student", student.get());
+            return view;
         }
         return new ModelAndView("redirect:/student");
     }
 
-    @PostMapping("/update/{id}")
-    public ModelAndView update(@PathVariable("id") Integer id, @ModelAttribute("student") StudentModel student) {
-        for (int i = 0; i < this.studentList.size(); i++) {
-            if (this.studentList.get(i).getId().equals(id)) {
-                this.studentList.set(i, student);
-                return new ModelAndView("redirect:/student");
-            }
-        }
+    @PostMapping("/update")
+    public ModelAndView update(@ModelAttribute("student") StudentModel student) {
+        this.studentService.update(student, student.getId());
         return new ModelAndView("redirect:/student");
     }
 
     @GetMapping("/delete/{id}")
-    public ModelAndView delete(@PathVariable("id") Integer id) {
+    public ModelAndView delete(@PathVariable("id") String id) {
         ModelAndView view = new ModelAndView("pages/student/delete");
 
-        for (StudentModel student : this.studentList) {
-            if (student.getId().equals(id)) {
-                view.addObject("student", student);
-                return view;
-            }
+        Optional<StudentModel> student = studentService.getById(id);
+        if (student.isPresent()) {
+            view.addObject("student", student.get());
+            return view;
         }
         return new ModelAndView("redirect:/student");
     }
 
-    @PostMapping("/remove/{id}")
-    public ModelAndView remove(@PathVariable("id") Integer id, @ModelAttribute StudentModel student) {
-        for (int i = 0; i < this.studentList.size(); i++) {
-            if (student.getId().equals(id)) {
-                this.studentList.remove(i);
-                return new ModelAndView("redirect:/student");
-            }
-        }
+    @PostMapping("/remove")
+    public ModelAndView remove(@ModelAttribute StudentModel student) {
+        this.studentService.delete(student.getId());
         return new ModelAndView("redirect:/student");
     }
 }

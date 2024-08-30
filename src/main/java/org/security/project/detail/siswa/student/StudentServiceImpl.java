@@ -110,6 +110,21 @@ public class StudentServiceImpl implements StudentService {
         smaHistory.setSchoolClasses(smaClass);
         schoolHistoryModel.add(smaHistory);
 
+        //perguruan tinggi
+        ArrayList<SchoolClassModel> kuliahClass = new ArrayList<>();
+        kuliahClass.add(new SchoolClassModel("Semester 1", null, null, ""));
+        kuliahClass.add(new SchoolClassModel("Semester 2", null, null, ""));
+        kuliahClass.add(new SchoolClassModel("Semester 3", null, null, ""));
+        kuliahClass.add(new SchoolClassModel("Semester 4", null, null, ""));
+        kuliahClass.add(new SchoolClassModel("Semester 5", null, null, ""));
+        kuliahClass.add(new SchoolClassModel("Semester 6", null, null, ""));
+        kuliahClass.add(new SchoolClassModel("Semester 7", null, null, ""));
+        kuliahClass.add(new SchoolClassModel("Semester 8", null, null, ""));
+
+        SchoolHistoryModel kuliahHistory = new SchoolHistoryModel("Perguruan Tinggi", "", "");
+        kuliahHistory.setSchoolClasses(kuliahClass);
+        schoolHistoryModel.add(kuliahHistory);
+
         //add to student
         student.setSchoolHistory(schoolHistoryModel);
         return student;

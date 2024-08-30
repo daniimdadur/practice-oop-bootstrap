@@ -13,58 +13,85 @@ $(document).ready(function () {
         });
     });
     //remove rw
-    $('.rw-container').on('click', '.btn-delete-rw', function () {
-        $(this).closest('.rw-container').remove();
+    $('#dusun-container').on('click', '.btn-delete-rw', function () {
+        $(this).closest('.rw-card').remove();
         //update index after delete
-        $('.rw-container .rw-card').each(function (index) {
-            $(this).find('[name]').each(function () {
-                let nameAttr = $(this).attr('name');
-                nameAttr = nameAttr.replace(/rwModels\[\d+\]/, `rwModels[${index}]`);
-                $(this).attr('name', nameAttr);
+        $('#dusun-container .dusun-card').each(function (dusunIndex) {
+            $(this).find('.rw-card').each(function (rwIndex) {
+                $(this).find('[name]').each(function () {
+                    let nameAttr = $(this).attr('name');
+                    nameAttr = nameAttr.replace(/dusunModels\[\d+\].rwModels\[\d+\]/, `dusunModels[${dusunIndex}].rwModels[${rwIndex}]`);
+                    $(this).attr('name', nameAttr);
+                });
             });
         });
     });
     //remove rt
-    $('.rt-container').on('click', '.btn-delete-rt', function () {
-        $(this).closest('.rt-container').remove();
+    $('#dusun-container').on('click', '.btn-delete-rt', function () {
+        $(this).closest('.rt-card').remove();
         //update index after delete
-        $('.rt-container .rt-card').each(function (index) {
-            $(this).find('[name]').each(function () {
-                let nameAttr = $(this).attr('name');
-                nameAttr = nameAttr.replace(/rtModels\[\d+\]/, `rtModels[${index}]`);
-                $(this).attr('name', nameAttr);
+        $('#dusun-container .dusun-card').each(function (dusunIndex) {
+            $(this).find('.rw-card').each(function (rwIndex) {
+                $(this).find('.rt-card').each(function (rtIndex) {
+                    $(this).find('[name]').each(function () {
+                        let nameAttr = $(this).attr('name');
+                        nameAttr = nameAttr.replace(/dusunModels\[\d+\].rwModels\[\d+\].rtModels\[\d+\]/, `dusunModels[${dusunIndex}].rwModels[${rwIndex}].rtModels[${rtIndex}]`);
+                        $(this).attr('name', nameAttr);
+                    });
+                });
             });
         });
-
     });
     //remove warga table
-    $('.warga-container').on('click', '.btn-delete-list-warga', function () {
+    $('#dusun-container').on('click', '.btn-delete-list-warga', function () {
         $(this).closest('.warga-container').remove();
+
+        $('#dusun-container .dusun-card').each(function (dusunIndex) {
+            $(this).find('.rw-card').each(function (rwIndex) {
+                $(this).find('.rt-card').each(function (rtIndex) {
+                    $(this).find('.warga-body').each(function (wargaIndex) {
+                        $(this).find('[name]').each(function () {
+                            let nameAttr = $(this).attr('name');
+                            nameAttr = nameAttr.replace(/dusunModels\[\d+\].rwModels\[\d+\].rtModels\[\d+\].peopleModel\[\d+\]/, `dusunModels[${dusunIndex}].rwModels[${rwIndex}].rtModels[${rtIndex}].peopleModel[${wargaIndex}]`);
+                            $(this).attr('name', nameAttr);
+                        });
+                    });
+                });
+            });
+        });
     });
-    // Menangani klik pada tombol delete
-    $('.warga-body').on('click', '.btn-delete-warga', function () {
+    // Menangani klik pada tombol delete dalam container dengan id 'dusun-container'
+    $('#dusun-container').on('click', '.btn-delete-warga', function () {
         // Hapus baris yang berisi tombol delete yang diklik
         $(this).closest('.warga-row').remove();
 
-        // Perbarui indeks untuk baris yang tersisa
-        $('.warga-body .warga-row').each(function(index) {
-            // Perbarui nomor urut pada kolom pertama
-            $(this).find('th[scope="row"]').text(index + 1);
+        // Perbarui indeks untuk setiap baris yang tersisa dalam hierarki dusun, rw, rt, dan warga
+        $('#dusun-container .dusun-card').each(function (dusunIndex) { // Iterasi setiap dusun-card
+            $(this).find('.rw-card').each(function (rwIndex) { // Iterasi setiap rw-card dalam dusun
+                $(this).find('.rt-card').each(function (rtIndex) { // Iterasi setiap rt-card dalam rw
+                    $(this).find('.warga-body .warga-row').each(function (wargaIndex) { // Iterasi setiap warga-row dalam rt
 
-            // Perbarui atribut name untuk input dan select dalam baris ini
-            $(this).find('[name]').each(function() {
-                // Ambil nilai atribut name
-                let nameAttr = $(this).attr('name');
+                        // Perbarui nomor urut di kolom 'th[scope="row"]' sesuai dengan indeks warga yang baru
+                        $(this).find('th[scope="row"]').text(wargaIndex + 1);
 
-                // Ganti indeks lama dengan indeks baru
-                // Misalnya, mengganti 'peopleModel[0]' dengan 'peopleModel[1]'
-                nameAttr = nameAttr.replace(/peopleModel\[\d+\]/, `peopleModel[${index}]`);
+                        // Perbarui atribut 'name' dari setiap input di dalam warga-row
+                        $(this).find('[name]').each(function () {
+                            // Ambil nilai atribut 'name' yang ada
+                            let nameAttr = $(this).attr('name');
 
-                // Setel ulang atribut name dengan nilai yang telah diperbarui
-                $(this).attr('name', nameAttr);
+                            // Ganti bagian indeks dalam atribut 'name' agar sesuai dengan posisi baru
+                            nameAttr = nameAttr.replace(/dusunModels\[\d+\]\.rwModels\[\d+\]\.rtModels\[\d+\]\.peopleModel\[\d+\]/,
+                                `dusunModels[${dusunIndex}].rwModels[${rwIndex}].rtModels[${rtIndex}].peopleModel[${wargaIndex}]`);
+
+                            // Tetapkan kembali atribut 'name' yang telah diperbarui
+                            $(this).attr('name', nameAttr);
+                        });
+                    });
+                });
             });
         });
     });
+
 
 
     //add dusun
